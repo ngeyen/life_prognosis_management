@@ -13,11 +13,12 @@ import java.util.logging.Level;
 
 public class UserService {
 
-    private static final String BASH_SCRIPT = "./user_manager.sh";
+    private static final String BASH_SCRIPT = "./src/user_manager.sh";
     private static final Logger logger = Logger.getLogger(UserService.class.getName());
 
     public String initializePatientRegistration(String email) {
         try {
+
             String result = _handleBashCommands(BASH_SCRIPT, "initialize", email);
             if (result.startsWith("SUCCESS:")) {
                 return result.split(":")[1].trim(); // Return the UUID
@@ -64,12 +65,14 @@ public class UserService {
             String result = _handleBashCommands(BASH_SCRIPT, "login", email, password, role.name().toLowerCase());
             return result.startsWith("SUCCESS");
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "Error during login", e);
+            logger.log(Level.SEVERE, "Error verifying login credentials", e);
+            //Unable to login
             return false;
         }
     }
 
     private String _handleBashCommands(String... command) throws IOException, InterruptedException {
+
         ProcessBuilder processBuilder = new ProcessBuilder(command);
         processBuilder.redirectErrorStream(true);
         Process process = processBuilder.start();
