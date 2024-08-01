@@ -8,4 +8,10 @@ public class LoginController {
         User Authentication
     */
 
+    public boolean loginUser(String email, String password, String role) {
+        //
+     return true;
+    }
+
+
 }
