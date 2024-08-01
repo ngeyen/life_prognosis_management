@@ -1,0 +1,1 @@
+patient@example.com,ae2c252f-4e91-4aba-9ea8-2c01088d3a46,Patient,GoodLuck,d4587ea9ead060c13fd994f21ecfa7926272a78854a2c20136b10a3c9e53e71e,patient,1998-12-08,true,2021-01-27,false,,rw
