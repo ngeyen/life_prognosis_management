@@ -62,13 +62,18 @@ register_user() {
 check_login() {
     email="$2"
     password="$3"
-    role="$4"
+
 
     hashed_password=$(hash_password "$password")
-    if grep -q "^$email,[^,]*,[^,]*,[^,]*,$hashed_password,$role" "$USER_STORE"; then
-        echo "SUCCESS: Login successful"
+    if grep -q "^$email,[^,]*,[^,]*,[^,]*,$hashed_password" "$USER_STORE"; then
+        # Extract the line containing user
+        user_line=$(grep "^$email," "$USER_STORE")
+        # Extract the role from the user line (assume role is always the 6th field)
+        role=$(echo "$user_line" | cut -d',' -f6)
+        echo "SUCCESS: Login successful. Role: $role"
     else
-        echo "FAILURE: Login failed"
+        # User doesn't exist
+        echo "FAILURE: Invalid Credentials"
     fi
 }
 
