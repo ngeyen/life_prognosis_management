@@ -13,13 +13,13 @@ import java.util.logging.Level;
 
 public class UserService {
 
-    private static final String BASH_SCRIPT = "./src/user_manager.sh";
+    private static final String SCRIPT = "./src/user_manager.sh";
     private static final Logger logger = Logger.getLogger(UserService.class.getName());
 
     public String initializePatientRegistration(String email) {
         try {
 
-            String result = _handleBashCommands(BASH_SCRIPT, "initialize", email);
+            String result = _handleBashCommands(SCRIPT, "initialize", email);
             if (result.startsWith("SUCCESS:")) {
                 return result.split(":")[1].trim(); // Return the UUID
             } else {
@@ -36,7 +36,7 @@ public class UserService {
         try {
             String result;
             if (user instanceof Patient patient) {
-                result = _handleBashCommands(BASH_SCRIPT, "register",
+                result = _handleBashCommands(SCRIPT, "register",
                         patient.getFirstName(), patient.getLastName(), patient.getEmail(), patient.getPassword(),
                         patient.getRole().name().toLowerCase(), patient.getDateOfBirth().toString(),
                         String.valueOf(patient.isHIVPositive()),
@@ -46,7 +46,7 @@ public class UserService {
                         patient.getCountryCode());
 
             } else if (user instanceof Admin) {
-                result = _handleBashCommands(BASH_SCRIPT, "register",
+                result = _handleBashCommands(SCRIPT, "register",
                         user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(),
                         user.getRole().name().toLowerCase());
             } else {
@@ -60,17 +60,28 @@ public class UserService {
         }
     }
 
-    public boolean verifyLoginCredentials(String email, String password, UserRole role) {
+    public UserRole verifyLoginCredentials(String email, String password) {
         try {
-            String result = _handleBashCommands(BASH_SCRIPT, "login", email, password, role.name().toLowerCase());
-            return result.startsWith("SUCCESS");
+            String result = _handleBashCommands(SCRIPT, "login", email, password);
+            if (result.startsWith("SUCCESS:")) {
+
+                String roleStr = result.split(": ")[2].strip(); // Extract role
+                return UserRole.valueOf(roleStr.toUpperCase());
+            }
+            else {
+                logger.warning("Failed to verify login credentials: " + result);
+                return null;
+            }
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "Error verifying login credentials", e);
             //Unable to login
-            return false;
+            logger.log(Level.SEVERE, "Error during login", e);
+            return null;
         }
     }
 
+    /**
+     * @return Returns from bash command
+     */
     private String _handleBashCommands(String... command) throws IOException, InterruptedException {
 
         ProcessBuilder processBuilder = new ProcessBuilder(command);
@@ -85,9 +96,10 @@ public class UserService {
             }
         }
 
+
         int exitCode = process.waitFor();
         if (exitCode != 0) {
-            logger.warning("Bash script exited with code " + exitCode);
+            logger.severe("Bash command execution failed" + output.toString());
         }
 
         return output.toString().trim();
