@@ -11,7 +11,10 @@ import java.io.InputStreamReader;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
+
 public class UserService {
+    //TODO
+    // Write comments for each method
 
     private static final String SCRIPT = "./src/user_manager.sh";
     private static final Logger logger = Logger.getLogger(UserService.class.getName());
