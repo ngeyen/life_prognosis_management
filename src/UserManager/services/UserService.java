@@ -19,7 +19,7 @@ public class UserService {
     private static final String SCRIPT = "./src/user_manager.sh";
     private static final Logger logger = Logger.getLogger(UserService.class.getName());
 
-    public String initializePatientRegistration(String email) {
+    public String initializeRegistration(String email) {
         try {
 
             String result = _handleBashCommands(SCRIPT, "initialize", email);
