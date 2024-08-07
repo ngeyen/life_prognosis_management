@@ -2,12 +2,13 @@ import UserManager.models.Admin;
 import UserManager.models.Patient;
 import UserManager.models.UserRole;
 import UserManager.services.UserService;
+import statistics.models.InfoType;
+import statistics.services.DataExport;
 
 import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
-
     private static final UserService userService = new UserService();
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -42,12 +43,12 @@ public class Main {
         }
     }
 
-    private static void initiatePatientRegistration() {
-        System.out.print("Enter patient email: ");
+    private static void initiateUserRegistration() {
+        System.out.print("Enter email: ");
         String email = scanner.nextLine();
-        String uuid = userService.initializePatientRegistration(email);
+        String uuid = userService.initializeRegistration(email);
         if (uuid != null) {
-            System.out.println("Registration initiated. Share this UUID with the patient: " + uuid);
+            System.out.println("Registration initiated. Share this UUID with the user: " + uuid);
         } else {
             System.out.println("Failed to initiate registration. Please try again.");
         }
@@ -115,6 +116,14 @@ public class Main {
         }
     }
 
+    private static void downloadCSV(InfoType type){
+        if(type == InfoType.PATIENT_INFO) {
+            DataExport dataExport = new DataExport();
+            dataExport.exportPatientData("patient_data.csv");
+        }
+    }
+
+
     private static void login() {
         System.out.print("Enter email: ");
         String email = scanner.nextLine();
@@ -127,22 +136,30 @@ public class Main {
             System.out.println(role + "\n========================");
             if (role == UserRole.ADMIN) {
                 System.out.println("Admin Menu.");
-
+                System.out.println("\n Select an option to proceed: ");
                 System.out.println("1. Create new patient");
                 System.out.println("2. Add an Admin");
                 System.out.println("3. Download Patient Info");
+                System.out.println("4. Download Patient Analytics");
+               System.out. println("\n=========================");
+                System.out.println("5. Help \t 0. Exit");
 
                 int choice = scanner.nextInt();
                 scanner.nextLine(); // Consume newline
 
                 switch (choice) {
                     case 1:
-                        initiatePatientRegistration();
+                        initiateUserRegistration();
                         break;
                     case 2:
                         createAdmin();
                         break;
+                    case 3:
+                        downloadCSV(InfoType.PATIENT_INFO);
+                        break;
                     case 4:
+                        downloadCSV(InfoType.PATIENT_STATS);
+                    case 0:
                         System.out.println("Exiting...");
                         return;
                     default:

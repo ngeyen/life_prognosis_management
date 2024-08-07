@@ -82,6 +82,11 @@ public class UserService {
         }
     }
 
+    public boolean updatePatientData(){
+
+        return false;
+    }
+
     /**
      * @return Returns from bash command
      */
