@@ -58,6 +58,25 @@ register_user() {
     echo "SUCCESS: User registered successfully"
 }
 
+# Function to update patient profile
+edit_patient_profile() {
+  first_name="$2"
+  last_name="$3"
+  email="$4"
+
+  date_of_birth="$7"
+  hiv_positive="$8"
+  diagnosis_date="$9"
+  on_art="${10}"
+  art_start_date="${11}"
+  country_iso_code="${12}"
+
+  # Check if user exists
+  if grep -q"^$email," "$USER_STORE"; then
+    sed -i "s|^$email,$uuid$|$email,,$first_name,$last_name,,,$date_of_birth,$hiv_positive,$diagnosis_date,$on_art,$art_start_date,$country_iso_code|" "$USER_STORE"
+  fi
+}
+
 # Function to check login
 check_login() {
     email="$2"
@@ -88,9 +107,12 @@ case "$1" in
     login)
         check_login "$@"
         ;;
+    update)
+        edit_patient_profile "$@"
+        ;;
     *)
         echo "FAILURE: Invalid command"
-        echo "Usage: $0 {initialize|register|login} [arguments]"
+        echo "Usage: $0 {initialize|register|login|update} [arguments]"
         exit 1
         ;;
 esac
