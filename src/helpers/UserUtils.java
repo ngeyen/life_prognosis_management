@@ -55,7 +55,7 @@ public class UserUtils {
                 return null;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error Finding patient", e.getMessage());
             return null;
         }
     }
