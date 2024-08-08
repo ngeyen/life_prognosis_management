@@ -57,7 +57,19 @@ register_user() {
 
     echo "SUCCESS: User registered successfully"
 }
+# Function to view user
+view_user() {
+    email="$2"
 
+    # Check if user exists
+    if grep -q "^$email," "$USER_STORE"; then
+        # Extract existing line and remove the password field (5th field)
+        existing_line=$(grep "^$email," "$USER_STORE")
+        echo "SUCCESS: $(echo "$existing_line" | awk -F',' '{OFS=","; $5=""; print $1,$2,$3,$4,$6,$7,$8,$9,$10,$11,$12}')"
+    else
+        echo "FAILURE: User not found"
+    fi
+}
 #Function to edit patient profile
 edit_patient_profile() {
     email="$2"
@@ -127,9 +139,12 @@ case "$1" in
     update)
         edit_patient_profile "$@"
         ;;
+                view)
+                    view_user "$@"
+                    ;;
     *)
         echo "FAILURE: Invalid command"
-        echo "Usage: $0 {initialize|register|login|update} [arguments]"
+        echo "Usage: $0 {initialize|register|login|update|view} [arguments]"
         exit 1
         ;;
 esac

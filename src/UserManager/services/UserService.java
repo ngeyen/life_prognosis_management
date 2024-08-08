@@ -4,10 +4,9 @@ import UserManager.models.User;
 import UserManager.models.Patient;
 import UserManager.models.Admin;
 import UserManager.models.UserRole;
+import helpers.BashConnect;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -22,7 +21,7 @@ public class UserService {
     public String initializeRegistration(String email) {
         try {
 
-            String result = _handleBashCommands(SCRIPT, "initialize", email);
+            String result = BashConnect.run(SCRIPT, "initialize", email);
             if (result.startsWith("SUCCESS:")) {
                 return result.split(":")[1].trim(); // Return the UUID
             } else {
@@ -39,7 +38,7 @@ public class UserService {
         try {
             String result;
             if (user instanceof Patient patient) {
-                result = _handleBashCommands(SCRIPT, "register",
+                result = BashConnect.run(SCRIPT, "register",
                         patient.getFirstName(), patient.getLastName(), patient.getEmail(), patient.getPassword(),
                         patient.getRole().name().toLowerCase(), patient.getDateOfBirth().toString(),
                         String.valueOf(patient.isHIVPositive()),
@@ -49,7 +48,7 @@ public class UserService {
                         patient.getCountryCode());
 
             } else if (user instanceof Admin) {
-                result = _handleBashCommands(SCRIPT, "register",
+                result = BashConnect.run(SCRIPT, "register",
                         user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(),
                         user.getRole().name().toLowerCase());
             } else {
@@ -65,7 +64,7 @@ public class UserService {
 
     public UserRole verifyLoginCredentials(String email, String password) {
         try {
-            String result = _handleBashCommands(SCRIPT, "login", email, password);
+            String result = BashConnect.run(SCRIPT, "login", email, password);
             if (result.startsWith("SUCCESS:")) {
 
                 String roleStr = result.split(": ")[2].strip(); // Extract role
@@ -87,46 +86,21 @@ public class UserService {
                                      String diagnosisDate, Boolean isOnART, 
                                      String artStartDate, String countryCode) {
         try {
-            String result = _handleBashCommands(
-                SCRIPT, "update", email, 
-                firstName.isEmpty() ? "keep_current" : firstName, 
-                lastName.isEmpty() ? "keep_current" : lastName, 
-                dateOfBirth.isEmpty() ? "keep_current" : dateOfBirth, 
-                isHIVPositive == null ? "keep_current" : String.valueOf(isHIVPositive), 
-                diagnosisDate.isEmpty() ? "keep_current" : diagnosisDate, 
-                isOnART == null ? "keep_current" : String.valueOf(isOnART), 
-                artStartDate.isEmpty() ? "keep_current" : artStartDate, 
+            return BashConnect.run(
+                SCRIPT, "update", email,
+                firstName.isEmpty() ? "keep_current" : firstName,
+                lastName.isEmpty() ? "keep_current" : lastName,
+                dateOfBirth.isEmpty() ? "keep_current" : dateOfBirth,
+                isHIVPositive == null ? "keep_current" : String.valueOf(isHIVPositive),
+                diagnosisDate.isEmpty() ? "keep_current" : diagnosisDate,
+                isOnART == null ? "keep_current" : String.valueOf(isOnART),
+                artStartDate.isEmpty() ? "keep_current" : artStartDate,
                 countryCode.isEmpty() ? "keep_current" : countryCode
             );
-            return result;
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error editing patient profile", e);
             throw new RuntimeException("Failed to edit patient profile", e);
         }
     }
-    /**
-     * @return Returns from bash command
-     */
-    private String _handleBashCommands(String... command) throws IOException, InterruptedException {
 
-        ProcessBuilder processBuilder = new ProcessBuilder(command);
-        processBuilder.redirectErrorStream(true);
-        Process process = processBuilder.start();
-
-        StringBuilder output = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                output.append(line).append("\n");
-            }
-        }
-
-
-        int exitCode = process.waitFor();
-        if (exitCode != 0) {
-            logger.severe("Bash command execution failed" + output.toString());
-        }
-
-        return output.toString().trim();
-    }
 }
