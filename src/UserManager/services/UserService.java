@@ -129,4 +129,10 @@ public class UserService {
 
         return output.toString().trim();
     }
+
+    public Patient findPatientByEmail(String email) {
+        //send email to bash, and receive a patient info
+        //convert patient string to a patient object
+        //return patient object
+    }
 }
