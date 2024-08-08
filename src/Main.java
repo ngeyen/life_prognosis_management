@@ -2,7 +2,7 @@ import UserManager.models.Admin;
 import UserManager.models.Patient;
 import UserManager.models.UserRole;
 import UserManager.services.UserService;
-import statistics.models.InfoType;
+import helpers.ExportType;
 import statistics.services.DataExport;
 
 import java.time.LocalDate;
@@ -116,8 +116,8 @@ public class Main {
         }
     }
 
-    private static void downloadCSV(InfoType type){
-        if(type == InfoType.PATIENT_INFO) {
+    private static void downloadCSV(ExportType type){
+        if(type == ExportType.PATIENT_INFO) {
             DataExport dataExport = new DataExport();
             dataExport.exportPatientData("patient_data.csv");
         }
@@ -199,10 +199,10 @@ public class Main {
                         createAdmin();
                         break;
                     case 3:
-                        downloadCSV(InfoType.PATIENT_INFO);
+                        downloadCSV(ExportType.PATIENT_INFO);
                         break;
                     case 4:
-                        downloadCSV(InfoType.PATIENT_STATS);
+                        downloadCSV(ExportType.PATIENT_STATS);
                     case 0:
                         System.out.println("Exiting...");
                         return;
