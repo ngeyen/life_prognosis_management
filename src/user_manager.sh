@@ -93,6 +93,19 @@ edit_patient_profile() {
         echo "FAILURE: User not found"
     fi
 }
+# Function to view user
+view_user(){
+  email="$2"
+  # search for user entry in USER_STORE if
+  # Check if user exists
+  if grep -q "^$email," "$USER_STORE"; then
+      # Extract existing line
+      existing_line=$(grep -q "^$email," "$USER_STORE")
+      echo "SUCCESS: $existing_line"
+  else
+      echo "FAILURE: User not found"
+  fi
+}
 
 # Function to check login
 check_login() {
@@ -121,6 +134,9 @@ case "$1" in
     register)
         register_user "$@"
         ;;
+          view)
+              view_user "$@"
+              ;;
     login)
         check_login "$@"
         ;;
@@ -129,7 +145,7 @@ case "$1" in
         ;;
     *)
         echo "FAILURE: Invalid command"
-        echo "Usage: $0 {initialize|register|login|update} [arguments]"
+        echo "Usage: $0 {initialize|register|login|update|view} [arguments]"
         exit 1
         ;;
 esac
