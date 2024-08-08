@@ -122,8 +122,52 @@ public class Main {
             dataExport.exportPatientData("patient_data.csv");
         }
     }
+    private static void editPatientProfile() {        
+        System.out.println("Enter the patient's email:");
+        String email = scanner.nextLine();
+        
+        System.out.println("Enter the patient's first name (leave blank to keep current):");
+        String firstName = scanner.nextLine();
+        
+        System.out.println("Enter the patient's last name (leave blank to keep current):");
+        String lastName = scanner.nextLine();
+        
+        System.out.println("Enter the patient's date of birth (yyyy-mm-dd) (leave blank to keep current):");
+        String dateOfBirth = scanner.nextLine();
+        
+        System.out.println("Is the patient HIV positive? (true/false) (leave blank to keep current):");
+        String isHIVPositiveStr = scanner.nextLine();
+        Boolean isHIVPositive = isHIVPositiveStr.isEmpty() ? null : Boolean.parseBoolean(isHIVPositiveStr);
+        
+        System.out.println("Enter the patient's diagnosis date (yyyy-mm-dd) (leave blank if not applicable or to keep current):");
+        String diagnosisDate = scanner.nextLine();
+        
+        System.out.println("Is the patient on ART? (true/false) (leave blank to keep current):");
+        String isOnARTStr = scanner.nextLine();
+        Boolean isOnART = isOnARTStr.isEmpty() ? null : Boolean.parseBoolean(isOnARTStr);
+        
+        System.out.println("Enter the patient's ART start date (yyyy-mm-dd) (leave blank if not applicable or to keep current):");
+        String artStartDate = scanner.nextLine();
+        
+        System.out.println("Enter the patient's country ISO code (leave blank to keep current):");
+        String countryCode = scanner.nextLine();
 
+        try {
+            String result = userService.editPatientProfile(
+                email, firstName, lastName, dateOfBirth, 
+                isHIVPositive, diagnosisDate, isOnART, 
+                artStartDate, countryCode
+            );
 
+            if (result.startsWith("SUCCESS")) {
+                System.out.println("Patient profile updated successfully.");
+            } else {
+                System.out.println("Failed to update patient profile: " + result);
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred while updating patient profile: " + e.getMessage());
+        }
+    }
     private static void login() {
         System.out.print("Enter email: ");
         String email = scanner.nextLine();
@@ -174,7 +218,7 @@ public class Main {
 
                 switch (choice) {
                     case 1:
-                        completePatientRegistration();
+                        editPatientProfile();
                         break;
                     case 2:
                         System.out.println("Exiting...");
