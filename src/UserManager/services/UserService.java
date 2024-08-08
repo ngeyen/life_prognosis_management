@@ -82,11 +82,28 @@ public class UserService {
         }
     }
 
-    public boolean updatePatientData(){
-
-        return false;
+    public String editPatientProfile(String email, String firstName, String lastName, 
+                                     String dateOfBirth, Boolean isHIVPositive, 
+                                     String diagnosisDate, Boolean isOnART, 
+                                     String artStartDate, String countryCode) {
+        try {
+            String result = _handleBashCommands(
+                SCRIPT, "update", email, 
+                firstName.isEmpty() ? "keep_current" : firstName, 
+                lastName.isEmpty() ? "keep_current" : lastName, 
+                dateOfBirth.isEmpty() ? "keep_current" : dateOfBirth, 
+                isHIVPositive == null ? "keep_current" : String.valueOf(isHIVPositive), 
+                diagnosisDate.isEmpty() ? "keep_current" : diagnosisDate, 
+                isOnART == null ? "keep_current" : String.valueOf(isOnART), 
+                artStartDate.isEmpty() ? "keep_current" : artStartDate, 
+                countryCode.isEmpty() ? "keep_current" : countryCode
+            );
+            return result;
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Error editing patient profile", e);
+            throw new RuntimeException("Failed to edit patient profile", e);
+        }
     }
-
     /**
      * @return Returns from bash command
      */
