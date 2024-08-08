@@ -1,7 +1,7 @@
 package statistics.models;
 
 
-public class PatientStat {
+public class PatientStatistic {
     private int patientId;
     private String patientName;
     private int age;
