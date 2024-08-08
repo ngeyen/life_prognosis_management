@@ -168,6 +168,18 @@ public class Main {
             System.out.println("An error occurred while updating patient profile: " + e.getMessage());
         }
     }
+    private static void viewPatientDetails() {
+        System.out.print("Enter your email: ");
+        String email = scanner.nextLine();
+        Patient patient = userService.findPatientByEmail(email);
+        if (patient != null) {
+            System.out.println("Patient Details:");
+            System.out.println("First Name: " + patient.getFirstName());
+            // Repeat for other fields...
+        } else {
+            System.out.println("Patient not found.");
+        }
+    }
     private static void login() {
         System.out.print("Enter email: ");
         String email = scanner.nextLine();
