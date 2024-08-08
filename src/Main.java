@@ -2,8 +2,11 @@ import UserManager.models.Admin;
 import UserManager.models.Patient;
 import UserManager.models.UserRole;
 import UserManager.services.UserService;
+import helpers.DataExport;
 import helpers.ExportType;
-import statistics.services.DataExport;
+import helpers.Help;
+import helpers.UserUtils;
+import statistics.services.SurvivalRate;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -115,7 +118,34 @@ public class Main {
             System.out.println("Failed to complete registration. Please try again.");
         }
     }
+    private static void viewPatientDetails() {
+        System.out.print("Enter your email: ");
+        String email = scanner.nextLine();
 
+        try {
+            String result = UserUtils.getUserDetail(email);
+
+            if (result.startsWith("SUCCESS")) {
+                String[] details = result.replace("SUCCESS: ", "").split(",");
+
+                // Display patient details excluding the password
+                System.out.println("Patient Details:");
+                System.out.println("First Name: " + details[2]);
+                System.out.println("Last Name: " + details[3]);
+                System.out.println("Role: " + details[4]);
+                System.out.println("Date of Birth: " + details[5]);
+                System.out.println("HIV Positive: " + details[6]);
+                System.out.println("Diagnosis Date: " + details[7]);
+                System.out.println("On ART: " + details[8]);
+                System.out.println("ART Start Date: " + details[9]);
+                System.out.println("Country Code: " + details[10]);
+            } else {
+                System.out.println("Patient not found.");
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred while retrieving patient details: " + e.getMessage());
+        }
+    }
     private static void downloadCSV(ExportType type){
         if(type == ExportType.PATIENT_INFO) {
             DataExport dataExport = new DataExport();
@@ -175,17 +205,18 @@ public class Main {
         String password = scanner.nextLine();
 
         UserRole role = userService.verifyLoginCredentials(email, password);
-        if (role !=null) {
+        if (role != null) {
             System.out.println("Login successful.");
             System.out.println(role + "\n========================");
+
             if (role == UserRole.ADMIN) {
                 System.out.println("Admin Menu.");
-                System.out.println("\n Select an option to proceed: ");
+                System.out.println("\nSelect an option to proceed: ");
                 System.out.println("1. Create new patient");
                 System.out.println("2. Add an Admin");
                 System.out.println("3. Download Patient Info");
                 System.out.println("4. Download Patient Analytics");
-               System.out. println("\n=========================");
+                System.out.println("\n=========================");
                 System.out.println("5. Help \t 0. Exit");
 
                 int choice = scanner.nextInt();
@@ -203,24 +234,44 @@ public class Main {
                         break;
                     case 4:
                         downloadCSV(ExportType.PATIENT_STATS);
+                        break;
+                    case 5:
+                      Help.showHelp();  // Assuming there's a help method.
+                        break;
                     case 0:
                         System.out.println("Exiting...");
                         return;
                     default:
                         System.out.println("Invalid choice. Please try again.");
                 }
-            }else {
-                System.out.println("User logged in.");
-                System.out.println("1. Update my Profile");
-                System.out.println("2. Exit");
+            } else {
+                System.out.println("Welcome, " + email);
+                System.out.println("You have " + SurvivalRate.calculateSurvivalRate(email));
+
+                System.out.println("\nSelect an option to proceed: ");
+                System.out.println("1. View Profile");
+                System.out.println("2. Update my Profile");
+                System.out.println("3. Recalculate Survival Rate");
+                System.out.println("4. Help");
+                System.out.println("5. Exit");
+
                 int choice = scanner.nextInt();
                 scanner.nextLine(); // Consume newline
 
                 switch (choice) {
                     case 1:
-                        editPatientProfile();
+                        viewPatientDetails();
                         break;
                     case 2:
+                        editPatientProfile();
+                        break;
+                    case 3:
+                        SurvivalRate.calculateSurvivalRate(email);
+                        break;
+                    case 4:
+                       Help.showHelp();  // Assuming there's a help method.
+                        break;
+                    case 5:
                         System.out.println("Exiting...");
                         return;
                     default:
