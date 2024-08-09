@@ -70,6 +70,20 @@ view_user() {
         echo "FAILURE: User not found"
     fi
 }
+
+# Function to get patient details by email
+get_patient_by_email() {
+    email="$2"
+
+    if grep -q "^$email," "$USER_STORE"; then
+        # Extract existing line excluding the password
+        existing_line=$(grep "^$email," "$USER_STORE" | cut -d',' -f1-2,3-4,6-12)
+        echo "SUCCESS: $existing_line"
+    else
+        echo "FAILURE: User not found"
+    fi
+}
+
 #Function to edit patient profile
 edit_patient_profile() {
     email="$2"
@@ -139,12 +153,15 @@ case "$1" in
     update)
         edit_patient_profile "$@"
         ;;
-                view)
-                    view_user "$@"
-                    ;;
+    view)
+        view_user "$@"
+        ;;
+    get_patient)
+        get_patient_by_email "$@"
+        ;;
     *)
         echo "FAILURE: Invalid command"
-        echo "Usage: $0 {initialize|register|login|update|view} [arguments]"
+        echo "Usage: $0 {initialize|register|login|update|view|get_patient} [arguments]"
         exit 1
         ;;
 esac
