@@ -181,7 +181,7 @@ public class Main {
         String countryCode = scanner.nextLine();
 
         try {
-            String result = userService.editPatientProfile(
+            String result = userService.editUserProfile(
                 email, firstName, lastName, dateOfBirth, 
                 isHIVPositive, diagnosisDate, isOnART, 
                 artStartDate, countryCode

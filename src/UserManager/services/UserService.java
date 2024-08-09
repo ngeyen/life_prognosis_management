@@ -81,7 +81,7 @@ public class UserService {
         }
     }
 
-    public String editPatientProfile(String email, String firstName, String lastName, 
+    public String editUserProfile(String email, String firstName, String lastName, 
                                      String dateOfBirth, Boolean isHIVPositive, 
                                      String diagnosisDate, Boolean isOnART, 
                                      String artStartDate, String countryCode) {
@@ -102,5 +102,12 @@ public class UserService {
             throw new RuntimeException("Failed to edit patient profile", e);
         }
     }
-
+    public String getUserDetail(String email) {
+        try {
+            return BashConnect.run(SCRIPT, "view", email);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Error viewing user - ", e);
+            throw new RuntimeException("Failed to view user", e);
+        }
+    }
 }
