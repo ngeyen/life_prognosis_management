@@ -9,6 +9,7 @@ import helpers.UserUtils;
 import statistics.services.SurvivalRate;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
@@ -118,12 +119,10 @@ public class Main {
             System.out.println("Failed to complete registration. Please try again.");
         }
     }
-    private static void viewPatientDetails() {
-        System.out.print("Enter your email: ");
-        String email = scanner.nextLine();
+    private static void viewPatientDetails(String email) {
 
         try {
-            String result = UserUtils.getUserDetail(email);
+            String result = userService.getUserDetail(email);
 
             if (result.startsWith("SUCCESS")) {
                 String[] details = result.replace("SUCCESS: ", "").split(",");
@@ -141,9 +140,10 @@ public class Main {
                 System.out.println("Country Code: " + details[10]);
             } else {
                 System.out.println("Patient not found.");
+
             }
         } catch (Exception e) {
-            System.out.println("An error occurred while retrieving patient details: " + e.getMessage());
+            System.err.println("An error occurred while retrieving patient details: " + e.getMessage());
         }
     }
     private static void downloadCSV(ExportType type){
@@ -152,10 +152,8 @@ public class Main {
             dataExport.exportPatientData("patient_data.csv");
         }
     }
-    private static void editPatientProfile() {        
-        System.out.println("Enter the patient's email:");
-        String email = scanner.nextLine();
-        
+    private static void editPatientProfile(String email) {
+
         System.out.println("Enter the patient's first name (leave blank to keep current):");
         String firstName = scanner.nextLine();
         
@@ -191,6 +189,7 @@ public class Main {
 
             if (result.startsWith("SUCCESS")) {
                 System.out.println("Patient profile updated successfully.");
+                System.out.println(SurvivalRate.calculateSurvivalRate(email));
             } else {
                 System.out.println("Failed to update patient profile: " + result);
             }
@@ -209,77 +208,84 @@ public class Main {
             System.out.println("Login successful.");
             System.out.println(role + "\n========================");
 
-            if (role == UserRole.ADMIN) {
-                System.out.println("Admin Menu.");
-                System.out.println("\nSelect an option to proceed: ");
-                System.out.println("1. Create new patient");
-                System.out.println("2. Add an Admin");
-                System.out.println("3. Download Patient Info");
-                System.out.println("4. Download Patient Analytics");
-                System.out.println("\n=========================");
-                System.out.println("5. Help \t 0. Exit");
+            boolean isLoggedIn = true;
 
-                int choice = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
+            while (isLoggedIn) {
+                if (role == UserRole.ADMIN) {
+                    System.out.println("Admin Menu.");
+                    System.out.println("\nSelect an option to proceed: ");
+                    System.out.println("1. Create new patient");
+                    System.out.println("2. Add an Admin");
+                    System.out.println("3. Download Patient Info");
+                    System.out.println("4. Download Patient Analytics");
+                    System.out.println("\n=========================");
+                    System.out.println("5. Help \t 0. Logout");
 
-                switch (choice) {
-                    case 1:
-                        initiateUserRegistration();
-                        break;
-                    case 2:
-                        createAdmin();
-                        break;
-                    case 3:
-                        downloadCSV(ExportType.PATIENT_INFO);
-                        break;
-                    case 4:
-                        downloadCSV(ExportType.PATIENT_STATS);
-                        break;
-                    case 5:
-                      Help.showHelp();  // Assuming there's a help method.
-                        break;
-                    case 0:
-                        System.out.println("Exiting...");
-                        return;
-                    default:
-                        System.out.println("Invalid choice. Please try again.");
-                }
-            } else {
-                System.out.println("Welcome, " + email);
-                System.out.println("You have " + SurvivalRate.calculateSurvivalRate(email));
+                    int choice = scanner.nextInt();
+                    scanner.nextLine(); // Consume newline
 
-                System.out.println("\nSelect an option to proceed: ");
-                System.out.println("1. View Profile");
-                System.out.println("2. Update my Profile");
-                System.out.println("3. Recalculate Survival Rate");
-                System.out.println("4. Help");
-                System.out.println("5. Exit");
+                    switch (choice) {
+                        case 1:
+                            initiateUserRegistration();
+                            break;
+                        case 2:
+                            createAdmin();
+                            break;
+                        case 3:
+                            downloadCSV(ExportType.PATIENT_INFO);
+                            break;
+                        case 4:
+                            downloadCSV(ExportType.PATIENT_STATS);
+                            break;
+                        case 5:
+                            Help.showHelp();  // Assuming there's a help method.
+                            break;
+                        case 0:
+                            System.out.println("Logging out...");
+                            isLoggedIn = false;
+                            break;
+                        default:
+                            System.out.println("Invalid choice. Please try again.");
+                    }
+                } else {
+                    System.out.println("\n\nWelcome, " + email);
+                    System.out.println(SurvivalRate.calculateSurvivalRate(email));
+                    System.out.println("\n===============================");
+                    System.out.println("\nSelect an option to proceed: ");
+                    System.out.println("1. View Profile");
+                    System.out.println("2. Update my Profile");
+                    System.out.println("3. Download ICS Schedule");
+                    System.out.println("4. Help");
+                    System.out.println("0. Logout");
 
-                int choice = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
+                    int choice = scanner.nextInt();
+                    scanner.nextLine(); // Consume newline
 
-                switch (choice) {
-                    case 1:
-                        viewPatientDetails();
-                        break;
-                    case 2:
-                        editPatientProfile();
-                        break;
-                    case 3:
-                        SurvivalRate.calculateSurvivalRate(email);
-                        break;
-                    case 4:
-                       Help.showHelp();  // Assuming there's a help method.
-                        break;
-                    case 5:
-                        System.out.println("Exiting...");
-                        return;
-                    default:
-                        System.out.println("Invalid choice. Please try again.");
+                    switch (choice) {
+                        case 1:
+                            viewPatientDetails(email);
+                            break;
+                        case 2:
+                            editPatientProfile(email);
+                            break;
+                        case 3:
+                            UserUtils.downloadDeathScheduleICS(email);
+                            break;
+                        case 4:
+                            Help.showHelp();  // Assuming there's a help method.
+                            break;
+                        case 0:
+                            System.out.println("Logging out...");
+                            isLoggedIn = false;
+                            break;
+                        default:
+                            System.out.println("Invalid choice. Please try again.");
+                    }
                 }
             }
         } else {
             System.out.println("Login failed. Please check your credentials.");
         }
     }
+
 }
