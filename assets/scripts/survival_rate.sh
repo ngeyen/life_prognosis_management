@@ -1,7 +1,7 @@
 #!/bin/bash
 
-USER_STORE="user-store.txt"
-LIFE_EXPECTANCY_FILE="life-expectancy.csv"
+USER_STORE="data/user-store.txt"
+LIFE_EXPECTANCY_FILE="assets/life-expectancy.csv"
 
 # Function to get life expectancy
 get_life_expectancy() {

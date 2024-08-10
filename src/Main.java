@@ -9,7 +9,6 @@ import helpers.UserUtils;
 import statistics.services.SurvivalRate;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
@@ -21,9 +20,8 @@ public class Main {
 
         while (true) {
 
-            System.out.println("1. Register");
+            System.out.println("1. Complete Registration");
             System.out.println("2. Login");
-
 
             System.out.println("3. Exit");
 
@@ -57,7 +55,8 @@ public class Main {
             System.out.println("Failed to initiate registration. Please try again.");
         }
     }
-    private  static  void createAdmin(){
+
+    private static void createAdmin() {
         System.out.print("Enter first name: ");
         String firstName = scanner.nextLine();
         System.out.print("Enter last name: ");
@@ -71,7 +70,7 @@ public class Main {
         boolean success = userService.createUser(admin);
         if (success) {
             System.out.println("Admin added created.");
-        }else {
+        } else {
             System.out.println("Failed to create Admin. Please try again.");
         }
     }
@@ -110,7 +109,8 @@ public class Main {
         System.out.print("Enter country code (ISO): ");
         String countryCode = scanner.nextLine();
 
-        Patient patient = new Patient(firstName, lastName, email, password, dateOfBirth, isHIVPositive, diagnosisDate, isOnART, artStartDate, countryCode);
+        Patient patient = new Patient(firstName, lastName, email, password, dateOfBirth, isHIVPositive, diagnosisDate,
+                isOnART, artStartDate, countryCode);
         boolean success = userService.createUser(patient);
 
         if (success) {
@@ -119,6 +119,7 @@ public class Main {
             System.out.println("Failed to complete registration. Please try again.");
         }
     }
+
     private static void viewPatientDetails(String email) {
 
         try {
@@ -146,46 +147,50 @@ public class Main {
             System.err.println("An error occurred while retrieving patient details: " + e.getMessage());
         }
     }
-    private static void downloadCSV(ExportType type){
-        if(type == ExportType.PATIENT_INFO) {
+
+    private static void downloadCSV(ExportType type) {
+        if (type == ExportType.PATIENT_INFO) {
+
             DataExport dataExport = new DataExport();
-            dataExport.exportPatientData("patient_data.csv");
+            dataExport.exportPatientData("data/patient_data.csv");
         }
     }
+
     private static void editPatientProfile(String email) {
 
         System.out.println("Enter the patient's first name (leave blank to keep current):");
         String firstName = scanner.nextLine();
-        
+
         System.out.println("Enter the patient's last name (leave blank to keep current):");
         String lastName = scanner.nextLine();
-        
+
         System.out.println("Enter the patient's date of birth (yyyy-mm-dd) (leave blank to keep current):");
         String dateOfBirth = scanner.nextLine();
-        
+
         System.out.println("Is the patient HIV positive? (true/false) (leave blank to keep current):");
         String isHIVPositiveStr = scanner.nextLine();
         Boolean isHIVPositive = isHIVPositiveStr.isEmpty() ? null : Boolean.parseBoolean(isHIVPositiveStr);
-        
-        System.out.println("Enter the patient's diagnosis date (yyyy-mm-dd) (leave blank if not applicable or to keep current):");
+
+        System.out.println(
+                "Enter the patient's diagnosis date (yyyy-mm-dd) (leave blank if not applicable or to keep current):");
         String diagnosisDate = scanner.nextLine();
-        
+
         System.out.println("Is the patient on ART? (true/false) (leave blank to keep current):");
         String isOnARTStr = scanner.nextLine();
         Boolean isOnART = isOnARTStr.isEmpty() ? null : Boolean.parseBoolean(isOnARTStr);
-        
-        System.out.println("Enter the patient's ART start date (yyyy-mm-dd) (leave blank if not applicable or to keep current):");
+
+        System.out.println(
+                "Enter the patient's ART start date (yyyy-mm-dd) (leave blank if not applicable or to keep current):");
         String artStartDate = scanner.nextLine();
-        
+
         System.out.println("Enter the patient's country ISO code (leave blank to keep current):");
         String countryCode = scanner.nextLine();
 
         try {
             String result = userService.editUserProfile(
-                email, firstName, lastName, dateOfBirth, 
-                isHIVPositive, diagnosisDate, isOnART, 
-                artStartDate, countryCode
-            );
+                    email, firstName, lastName, dateOfBirth,
+                    isHIVPositive, diagnosisDate, isOnART,
+                    artStartDate, countryCode);
 
             if (result.startsWith("SUCCESS")) {
                 System.out.println("Patient profile updated successfully.");
@@ -197,6 +202,7 @@ public class Main {
             System.out.println("An error occurred while updating patient profile: " + e.getMessage());
         }
     }
+
     private static void login() {
         System.out.print("Enter email: ");
         String email = scanner.nextLine();
@@ -238,7 +244,7 @@ public class Main {
                             downloadCSV(ExportType.PATIENT_STATS);
                             break;
                         case 5:
-                            Help.showHelp();  // Assuming there's a help method.
+                            Help.showHelp(); // Assuming there's a help method.
                             break;
                         case 0:
                             System.out.println("Logging out...");
@@ -272,7 +278,7 @@ public class Main {
                             UserUtils.downloadDeathScheduleICS(email);
                             break;
                         case 4:
-                            Help.showHelp();  // Assuming there's a help method.
+                            Help.showHelp(); // Assuming there's a help method.
                             break;
                         case 0:
                             System.out.println("Logging out...");

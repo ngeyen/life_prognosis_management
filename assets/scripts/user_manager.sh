@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USER_STORE="user-store.txt"
+USER_STORE="data/user-store.txt"
 
 # Function to generate UUID
 generate_uuid() {
@@ -102,6 +102,7 @@ edit_patient_profile() {
         existing_line=$(grep "^$email," "$USER_STORE")
         uuid=$(echo "$existing_line" | cut -d',' -f2)
         password=$(echo "$existing_line" | cut -d',' -f5)
+        role=$(echo "$existing_line" | cut -d',' -f6)  # Extract the role
 
         # Replace 'keep_current' with the current value from the file
         [ "$first_name" == "keep_current" ] && first_name=$(echo "$existing_line" | cut -d',' -f3)
@@ -113,12 +114,13 @@ edit_patient_profile() {
         [ "$art_start_date" == "keep_current" ] && art_start_date=$(echo "$existing_line" | cut -d',' -f11)
         [ "$country_iso_code" == "keep_current" ] && country_iso_code=$(echo "$existing_line" | cut -d',' -f12)
 
-        sed -i "s|^$email,$uuid,[^,]*,[^,]*,$password,[^,]*,[^,]*,[^,]*,[^,]*,[^,]*,[^,]*,[^,]*$|$email,$uuid,$first_name,$last_name,$password,$date_of_birth,$hiv_positive,$diagnosis_date,$on_art,$art_start_date,$country_iso_code|" "$USER_STORE"
+        sed -i "s|^$email,$uuid,[^,]*,[^,]*,$password,$role,[^,]*,[^,]*,[^,]*,[^,]*,[^,]*,[^,]*$|$email,$uuid,$first_name,$last_name,$password,$role,$date_of_birth,$hiv_positive,$diagnosis_date,$on_art,$art_start_date,$country_iso_code|" "$USER_STORE"
         echo "SUCCESS: Patient profile updated"
     else
         echo "FAILURE: User not found"
     fi
 }
+
 
 # Function to check login
 check_login() {
