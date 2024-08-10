@@ -8,7 +8,6 @@ import java.time.Period;
 
 public class SurvivalRate {
 
-
     public static String calculateSurvivalRate(String email) {
         Patient patient = UserUtils.getPatientByEmail(email);
         if (patient == null) {
@@ -24,26 +23,29 @@ public class SurvivalRate {
 
             // Extract the numeric value from the life expectancy result
             String lifeExpectancyStr = lifeExpectancyResult.replaceAll("[^0-9.]", "");
-            double lifeExpectancy = Double.parseDouble(lifeExpectancyStr);
+            double le = Double.parseDouble(lifeExpectancyStr);
+            int lifeExpectancy = (int) Math.ceil(le);
 
             int currentAge = Period.between(patient.getDateOfBirth(), LocalDate.now()).getYears();
 
             if (!patient.isHIVPositive()) {
                 // Country's life expectancy - current age
-                return String.format("You have %.2f years remaining", lifeExpectancy - currentAge);
+                return String.format("You have %d years remaining", lifeExpectancy - currentAge);
             } else {
                 if (!patient.isOnART()) {
-                    // If a patient is not on ART, the survival rate is 5 years minus time since diagnosis
+                    // If a patient is not on ART, the survival rate is 5 years minus time since
+                    // diagnosis
                     int yearsSinceDiagnosis = Period.between(patient.getDiagnosisDate(), LocalDate.now()).getYears();
-                    return String.format("You have %.2f years remaining", 5.0 - yearsSinceDiagnosis);
+                    return String.format("You have %d years remaining", 5 - yearsSinceDiagnosis);
                 } else if (patient.getDiagnosisDate().getYear() == patient.getArtStartDate().getYear()) {
                     // (Country's life expectancy - current age) * 0.9
-                    return String.format("You have %.2f years remaining", (lifeExpectancy - currentAge) * 0.9);
+                    return String.format("You have %d years remaining",
+                            (int) Math.ceil((lifeExpectancy - currentAge) * 0.9));
                 } else {
                     // For each year of delay, the patient loses 10% for each year of the difference
                     int delay = patient.getArtStartDate().getYear() - patient.getDiagnosisDate().getYear();
-                    return String.format("You have %.2f years remaining",
-                            (lifeExpectancy - currentAge) * Math.pow(0.9, delay));
+                    return String.format("You have %d years remaining",
+                            (int) Math.ceil((lifeExpectancy - currentAge) * Math.pow(0.9, delay)));
                 }
             }
 
@@ -51,7 +53,6 @@ public class SurvivalRate {
             return "An error occurred while calculating survival rate: " + e.getMessage();
         }
     }
-
 
     @Override
     public String toString() {

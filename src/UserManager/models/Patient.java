@@ -11,8 +11,8 @@ public class Patient extends User {
     private String countryCode;
 
     public Patient(String firstName, String lastName, String email, String password,
-                   LocalDate dateOfBirth, boolean isHIVPositive, LocalDate diagnosisDate,
-                   boolean isOnART, LocalDate artStartDate, String countryCode) {
+            LocalDate dateOfBirth, boolean isHIVPositive, LocalDate diagnosisDate,
+            boolean isOnART, LocalDate artStartDate, String countryCode) {
         super(firstName, lastName, email, password);
         this.dateOfBirth = dateOfBirth;
         this.isHIVPositive = isHIVPositive;
@@ -28,16 +28,65 @@ public class Patient extends User {
     }
 
     // Getters and setters for Patient-specific fields
-    public LocalDate getDateOfBirth() { return dateOfBirth; }
-    public void setDateOfBirth(LocalDate dateOfBirth) { this.dateOfBirth = dateOfBirth; }
-    public boolean isHIVPositive() { return isHIVPositive; }
-    public void setHIVPositive(boolean HIVPositive) { isHIVPositive = HIVPositive; }
-    public LocalDate getDiagnosisDate() { return diagnosisDate; }
-    public void setDiagnosisDate(LocalDate diagnosisDate) { this.diagnosisDate = diagnosisDate; }
-    public boolean isOnART() { return isOnART; }
-    public void setOnART(boolean onART) { isOnART = onART; }
-    public LocalDate getArtStartDate() { return artStartDate; }
-    public void setArtStartDate(LocalDate artStartDate) { this.artStartDate = artStartDate; }
-    public String getCountryCode() { return countryCode; }
-    public void setCountryCode(String countryCode) { this.countryCode = countryCode; }
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public boolean isHIVPositive() {
+        return isHIVPositive;
+    }
+
+    public void setHIVPositive(boolean HIVPositive) {
+        isHIVPositive = HIVPositive;
+    }
+
+    public LocalDate getDiagnosisDate() {
+        return diagnosisDate;
+    }
+
+    public void setDiagnosisDate(LocalDate diagnosisDate) {
+        this.diagnosisDate = diagnosisDate;
+    }
+
+    public boolean isOnART() {
+        return isOnART;
+    }
+
+    public void setOnART(boolean onART) {
+        isOnART = onART;
+    }
+
+    public LocalDate getArtStartDate() {
+        return artStartDate;
+    }
+
+    public void setArtStartDate(LocalDate artStartDate) {
+        this.artStartDate = artStartDate;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    @Override
+    public String toString() {
+        return "First Name: " + getFirstName() + "\n"
+                + "Last Name: " + getLastName() + "\n"
+                + "Email: " + getEmail() + "\n"
+                + "Date of Birth: " + getDateOfBirth() + "\n"
+                + "HIV Positive: " + isHIVPositive + "\n"
+                + "Diagnosis Date: " + getDiagnosisDate() + "\n"
+                + "On ART: " + isOnART + "\n"
+                + "ART Start Date: " + getArtStartDate() + "\n"
+                + "Country Code: " + getCountryCode();
+
+    }
 }
