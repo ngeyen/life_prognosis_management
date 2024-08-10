@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="daf0fff7-b521-4ef8-a2ac-67ad3abacffa" name="Changes" comment="get user details utility clases">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/patient_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/patient_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/statistics/services/SurvivalRate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/statistics/services/SurvivalRate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user_manager.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/user_manager.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-store.txt" beforeDir="false" afterPath="$PROJECT_DIR$/user-store.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "ngeyen"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:ngeyen/life_prognosis_management.git",
+    "accountId": "5c8b1541-8df7-4521-8818-4108b1127c75"
+  },
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
+    },
+    "owner": "ngeyen",
+    "repository": "life_prognosis_management"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2k0uwDSHHY07216aQG9I7ZpAXsV" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "#4 on dev",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "//wsl.localhost/Ubuntu-24.04/home/ngeyen/development/LifePrognosis",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "//wsl.localhost/Ubuntu-24.04/home/ngeyen/development/LifePrognosis/src/Main.java",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl.localhost\Ubuntu-24.04\home\ngeyen\development\LifePrognosis" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="UserManager.controllers" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="LifePrognosis" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="daf0fff7-b521-4ef8-a2ac-67ad3abacffa" name="Changes" comment="" />
+      <created>1722433055527</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1722433055527</updated>
+      <workItem from="1722433056206" duration="1680000" />
+      <workItem from="1722435149423" duration="8265000" />
+      <workItem from="1722452540207" duration="43253000" />
+      <workItem from="1722848113544" duration="10372000" />
+      <workItem from="1722956035977" duration="46923000" />
+    </task>
+    <task id="LOCAL-00001" summary="initializing the user management module as Auth">
+      <option name="closed" value="true" />
+      <created>1722434328433</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1722434328433</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update: Updated initial files and added comments">
+      <option name="closed" value="true" />
+      <created>1722450993996</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1722450993996</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added: Added Admin Patient and User classes details">
+      <option name="closed" value="true" />
+      <created>1722524558584</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1722524558584</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added: Added methods to manage users">
+      <option name="closed" value="true" />
+      <created>1722524661600</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1722524661600</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added: added user service for interacting with bash">
+      <option name="closed" value="true" />
+      <created>1722524697810</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1722524697810</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added: added controller">
+      <option name="closed" value="true" />
+      <created>1722524747212</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1722524747212</updated>
+    </task>
+    <task id="LOCAL-00007" summary="delete: removed controllers&#10;added static methods to main">
+      <option name="closed" value="true" />
+      <created>1722539892417</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1722539892417</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fixed user-store">
+      <option name="closed" value="true" />
+      <created>1722539921362</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1722539921362</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added descriptions">
+      <option name="closed" value="true" />
+      <created>1722545886335</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1722545886335</updated>
+    </task>
+    <task id="LOCAL-00010" summary="updated descriptions">
+      <option name="closed" value="true" />
+      <created>1722546009257</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1722546009257</updated>
+    </task>
+    <task id="LOCAL-00011" summary="updated descriptions">
+      <option name="closed" value="true" />
+      <created>1722546795282</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1722546795282</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fixed login for admin and patient">
+      <option name="closed" value="true" />
+      <created>1722597449538</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1722597449538</updated>
+    </task>
+    <task id="LOCAL-00013" summary="testing working">
+      <option name="closed" value="true" />
+      <created>1722597476733</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1722597476733</updated>
+    </task>
+    <task id="LOCAL-00014" summary="return user role on successful login">
+      <option name="closed" value="true" />
+      <created>1722597498641</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1722597498641</updated>
+    </task>
+    <task id="LOCAL-00015" summary="updated script variable and login credentials">
+      <option name="closed" value="true" />
+      <created>1722597580045</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1722597580045</updated>
+    </task>
+    <task id="LOCAL-00016" summary="write comments">
+      <option name="closed" value="true" />
+      <created>1722597721314</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1722597721314</updated>
+    </task>
+    <task id="LOCAL-00017" summary="added patient statistics module">
+      <option name="closed" value="true" />
+      <created>1722949859800</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1722949859800</updated>
+    </task>
+    <task id="LOCAL-00018" summary="initialize patient registration">
+      <option name="closed" value="true" />
+      <created>1722949900326</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1722949900326</updated>
+    </task>
+    <task id="LOCAL-00019" summary="added update profile">
+      <option name="closed" value="true" />
+      <created>1723020927153</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1723020927153</updated>
+    </task>
+    <task id="LOCAL-00020" summary="initialize both patient and admin profile">
+      <option name="closed" value="true" />
+      <created>1723020958419</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1723020958419</updated>
+    </task>
+    <task id="LOCAL-00021" summary="updated class diagram">
+      <option name="closed" value="true" />
+      <created>1723020975517</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1723020975517</updated>
+    </task>
+    <task id="LOCAL-00022" summary="survival rate progress">
+      <option name="closed" value="true" />
+      <created>1723021013057</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1723021013057</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Update patient profile method">
+      <option name="closed" value="true" />
+      <created>1723118979167</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1723118979167</updated>
+    </task>
+    <task id="LOCAL-00024" summary="renamed PatientStat.java to PatientStatistic">
+      <option name="closed" value="true" />
+      <created>1723119021158</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1723119021158</updated>
+    </task>
+    <task id="LOCAL-00025" summary="rename from SurvialRate.java">
+      <option name="closed" value="true" />
+      <created>1723119036953</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1723119036953</updated>
+    </task>
+    <task id="LOCAL-00026" summary="edit patient profile">
+      <option name="closed" value="true" />
+      <created>1723119055054</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1723119055054</updated>
+    </task>
+    <task id="LOCAL-00027" summary="edit patient profile utility function">
+      <option name="closed" value="true" />
+      <created>1723119075425</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1723119075425</updated>
+    </task>
+    <task id="LOCAL-00028" summary="added export type enum and  Data Export class">
+      <option name="closed" value="true" />
+      <created>1723147635537</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1723147635537</updated>
+    </task>
+    <task id="LOCAL-00029" summary="removed classes from statistics">
+      <option name="closed" value="true" />
+      <created>1723147695462</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1723147695462</updated>
+    </task>
+    <task id="LOCAL-00030" summary="added bash connect and user utils">
+      <option name="closed" value="true" />
+      <created>1723147737477</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1723147737477</updated>
+    </task>
+    <task id="LOCAL-00031" summary="added survival rate shell script and comments for calculations">
+      <option name="closed" value="true" />
+      <created>1723147808031</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1723147808031</updated>
+    </task>
+    <task id="LOCAL-00032" summary="moved export type to helpers and refactor">
+      <option name="closed" value="true" />
+      <created>1723147949825</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1723147949826</updated>
+    </task>
+    <task id="LOCAL-00033" summary="moved to helpers package">
+      <option name="closed" value="true" />
+      <created>1723155656967</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1723155656967</updated>
+    </task>
+    <task id="LOCAL-00034" summary="start tracking life-expectancy.csv">
+      <option name="closed" value="true" />
+      <created>1723155679013</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1723155679013</updated>
+    </task>
+    <task id="LOCAL-00035" summary="added view patient and survival rate calculations for patient">
+      <option name="closed" value="true" />
+      <created>1723155729916</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1723155729916</updated>
+    </task>
+    <task id="LOCAL-00036" summary="created survival_rate.sh script">
+      <option name="closed" value="true" />
+      <created>1723155747042</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1723155747042</updated>
+    </task>
+    <task id="LOCAL-00037" summary="added survival rate calculations as static function">
+      <option name="closed" value="true" />
+      <created>1723155780024</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1723155780024</updated>
+    </task>
+    <task id="LOCAL-00038" summary="added view user function">
+      <option name="closed" value="true" />
+      <created>1723155895187</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1723155895187</updated>
+    </task>
+    <task id="LOCAL-00039" summary="_handleBashCommands into helpers.BashConnect">
+      <option name="closed" value="true" />
+      <created>1723155956172</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1723155956172</updated>
+    </task>
+    <task id="LOCAL-00040" summary="added the user utitlities class for more specific user implementations">
+      <option name="closed" value="true" />
+      <created>1723155998950</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1723155998950</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Created the help screen to help users better understand how to use the system">
+      <option name="closed" value="true" />
+      <created>1723156033505</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1723156033505</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Log exceptions whtn getting patient by email id">
+      <option name="closed" value="true" />
+      <created>1723156197445</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1723156197445</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Fixed login behavior &#10;added download schedule &#10;added view patient details">
+      <option name="closed" value="true" />
+      <created>1723205686188</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1723205686188</updated>
+    </task>
+    <task id="LOCAL-00044" summary="get life expectancy bash script">
+      <option name="closed" value="true" />
+      <created>1723205771478</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1723205771478</updated>
+    </task>
+    <task id="LOCAL-00045" summary="added method to calculate survival rate">
+      <option name="closed" value="true" />
+      <created>1723206095055</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1723206095055</updated>
+    </task>
+    <task id="LOCAL-00046" summary="get patient by email method and view patient details">
+      <option name="closed" value="true" />
+      <created>1723206138533</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1723206138533</updated>
+    </task>
+    <task id="LOCAL-00047" summary="changed user details and refactored method names">
+      <option name="closed" value="true" />
+      <created>1723206491143</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1723206491143</updated>
+    </task>
+    <task id="LOCAL-00048" summary="get user details utility clases">
+      <option name="closed" value="true" />
+      <created>1723206516062</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1723206516062</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="renamed PatientStat.java to PatientStatistic" />
+    <MESSAGE value="rename from SurvialRate.java" />
+    <MESSAGE value="edit patient profile" />
+    <MESSAGE value="edit patient profile utility function" />
+    <MESSAGE value="added export type enum and  Data Export class" />
+    <MESSAGE value="removed classes from statistics" />
+    <MESSAGE value="added bash connect and user utils" />
+    <MESSAGE value="added survival rate shell script and comments for calculations" />
+    <MESSAGE value="moved export type to helpers and refactor" />
+    <MESSAGE value="moved to helpers package" />
+    <MESSAGE value="start tracking life-expectancy.csv" />
+    <MESSAGE value="added view patient and survival rate calculations for patient" />
+    <MESSAGE value="created survival_rate.sh script" />
+    <MESSAGE value="added survival rate calculations as static function" />
+    <MESSAGE value="added view user function" />
+    <MESSAGE value="_handleBashCommands into helpers.BashConnect" />
+    <MESSAGE value="added the user utitlities class for more specific user implementations" />
+    <MESSAGE value="Created the help screen to help users better understand how to use the system" />
+    <MESSAGE value="Log exceptions whtn getting patient by email id" />
+    <MESSAGE value="Fixed login behavior &#10;added download schedule &#10;added view patient details" />
+    <MESSAGE value="get life expectancy bash script" />
+    <MESSAGE value="added method to calculate survival rate" />
+    <MESSAGE value="get patient by email method and view patient details" />
+    <MESSAGE value="changed user details and refactored method names" />
+    <MESSAGE value="get user details utility clases" />
+    <option name="LAST_COMMIT_MESSAGE" value="get user details utility clases" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.io.IOException" package="java.io" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
