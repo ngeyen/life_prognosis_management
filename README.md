@@ -69,37 +69,43 @@ Project Structure
 -----------------
 
 ```
-├── ClassDiagram.png
-├── Explanation of Diagrams.pdf
 ├── README.md
-├── life-expectancy.csv
-├── patient_data.csv
-├── src
-│   ├── Main.java
-│   ├── UserManager
-│   │   ├── models
-│   │   │   ├── Admin.java
-│   │   │   ├── Patient.java
-│   │   │   ├── User.java
-│   │   │   └── UserRole.java
-│   │   └── services
-│   │       ├── UserService.java
-│   │       └── UserService.java:Zone.Identifier
-│   ├── helpers
-│   │   ├── BashConnect.java
-│   │   ├── DataExport.java
-│   │   ├── ExportType.java
-│   │   ├── Help.java
-│   │   └── UserUtils.java
-│   ├── statistics
-│   │   ├── models
-│   │   │   └── PatientStatistic.java
-│   │   └── services
-│   │       ├── StatServices.java
-│   │       └── SurvivalRate.java
-│   ├── survival_rate.sh
-│   └── user_manager.sh
-└── user-store.txt 
+├── assets
+│   ├── life-expectancy.csv
+│   └── scripts
+│       ├── survival_rate.sh
+│       └── user_manager.sh
+├── credentials.txt
+├── data
+│   ├── patient_data.csv
+│   └── user-store.txt
+├── documentation
+│   ├── Activity Diagram.jpg
+│   ├── ClassDiagram.png
+│   └── Explanation of Diagrams.pdf
+└── src
+    ├── Main.java
+    ├── UserManager
+    │   ├── models
+    │   │   ├── Admin.java
+    │   │   ├── Patient.java
+    │   │   ├── User.java
+    │   │   └── UserRole.java
+    │   └── services
+    │       └── UserService.java
+    ├── helpers
+    │   ├── BashConnect.java
+    │   ├── DataExport.java
+    │   ├── ExportType.java
+    │   ├── Help.java
+    │   └── UserUtils.java
+    └── statistics
+        ├── models
+        │   ├── Country.java
+        │   └── PatientStatistic.java
+        └── services
+            ├── StatServices.java
+            └── SurvivalRate.java
 ```
 
 Features
