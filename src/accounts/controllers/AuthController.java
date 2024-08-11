@@ -1,107 +1,61 @@
 package accounts.controllers;
 
+import java.io.Console;
 import java.util.Scanner;
 
-import accounts.services.UserManagementService;
-import core.Docs;
-import datacompute.services.SurvivalRate;
-import utils.enums.ExportType;
+import accounts.services.AuthService;
+import dashboard.controllers.AdminDashboardController;
+import dashboard.controllers.PatientDashboardController;
 import utils.enums.UserRole;
-import utils.user.SessionUtils;
+import utils.validators.EmailValidator;
+import utils.validators.Validator;
 
 public class AuthController {
-    private static final UserManagementService userService = new UserManagementService();
     private static final Scanner scanner = new Scanner(System.in);
+    private static Validator emailValidator = new EmailValidator();
 
     public static void login() {
-        System.out.print("Enter email: ");
-        String email = scanner.nextLine();
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
+        String email;
+        while (true) {
+            System.out.print("Enter email: ");
+            email = scanner.nextLine();
 
-        UserRole role = userService.verifyLoginCredentials(email, password);
+            // Email validation using regex
+            if (emailValidator.validate(email)) {
+                break;
+            } else {
+                System.out.println("Invalid email format. Please try again.");
+            }
+        }
+
+        // Hiding password input
+        String password = readPassword("Enter password: ");
+
+        // Verifying login credentials
+        UserRole role = AuthService.verifyLoginCredentials(email, password);
         if (role != null) {
             System.out.println("Login successful.");
-            System.out.println("========================");
-
-            boolean isLoggedIn = true;
-
-            while (isLoggedIn) {
-                if (role == UserRole.ADMIN) {
-                    System.out.println("Admin Menu.");
-                    System.out.println("\nSelect an option to proceed: ");
-                    System.out.println("1. Create new patient");
-                    System.out.println("2. Add an Admin");
-                    System.out.println("3. Download Patient Info");
-                    System.out.println("4. Download Patient Analytics");
-                    System.out.println("\n=========================");
-                    System.out.println("5. Help \t 0. Logout");
-
-                    int choice = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
-
-                    switch (choice) {
-                        case 1:
-                            RegistrationController.initiateUserRegistration();
-                            break;
-                        case 2:
-                            RegistrationController.createAdmin();
-                            break;
-                        case 3:
-                            SessionUtils.downloadCSV(ExportType.PATIENT_INFO);
-                            break;
-                        case 4:
-                            SessionUtils.downloadCSV(ExportType.PATIENT_STATS);
-                            break;
-                        case 5:
-                            Docs.showHelp(UserRole.ADMIN);
-                            break;
-                        case 0:
-                            System.out.println("Logging out...");
-                            isLoggedIn = false;
-                            break;
-                        default:
-                            System.out.println("Invalid choice. Please try again.");
-                    }
-                } else {
-                    System.out.println("\n\nWelcome, " + email);
-                    System.out.println(SurvivalRate.calculateSurvivalRate(email));
-                    System.out.println("===============================");
-                    System.out.println("\nSelect an option to proceed: ");
-                    System.out.println("1. View Profile");
-                    System.out.println("2. Update my Profile");
-                    System.out.println("3. Download ICS Schedule");
-                    System.out.println("4. Help");
-                    System.out.println("0. Logout");
-
-                    int choice = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
-
-                    switch (choice) {
-                        case 1:
-                            ProfileController.viewPatientDetails(email);
-                            break;
-                        case 2:
-                            ProfileController.editPatientProfile(email);
-                            break;
-                        case 3:
-                            ProfileController.downloadDeathScheduleICS(email);
-                            break;
-                        case 4:
-                            Docs.showHelp(UserRole.PATIENT);
-                            break;
-                        case 0:
-                            System.out.println("Logging out...");
-                            isLoggedIn = false;
-                            break;
-                        default:
-                            System.out.println("Invalid choice. Please try again.");
-                    }
-                }
+            // Redirecting to dashboard based on user role
+            if (role == UserRole.ADMIN) {
+                AdminDashboardController.showDashboard();
+            } else {
+                PatientDashboardController.showDashboard(email);
             }
         } else {
             System.out.println("Login failed. Please check your credentials.");
         }
     }
 
+    // Method to read password with input hidden
+    private static String readPassword(String prompt) {
+        System.out.print(prompt);
+        Console console = System.console();
+        if (console != null) {
+            char[] passwordArray = console.readPassword();
+            return new String(passwordArray);
+        } else {
+            // Fallback to standard input if console is not available (e.g., in IDEs)
+            return scanner.nextLine();
+        }
+    }
 }
