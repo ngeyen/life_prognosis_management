@@ -11,7 +11,7 @@ public class RegistrationUtils {
 
     public static boolean isUUIDValid(String uuid) {
         try {
-            String result = BashConnect.run(AppConfig.getUserMangerScript(), "search_uuid", uuid);
+            String result = BashConnect.run(AppConfig.getUserManagerScript(), "search_uuid", uuid);
             return result.startsWith("SUCCESS");
         } catch (Exception e) {
 

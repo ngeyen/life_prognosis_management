@@ -16,7 +16,7 @@ public class SessionUtils {
     public static String getLifeExpectancy(String email) {
 
         try {
-            return BashConnect.run(AppConfig.getSurvialRateScript(), "country_le", email);
+            return BashConnect.run(AppConfig.getSurvivalRateScript(), "country_le", email);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error retrieving life expectancy", e);
             throw new RuntimeException("Failed to retrieve life expectancy", e);
@@ -26,7 +26,7 @@ public class SessionUtils {
     // Fetch patient details by email
     public static Patient getPatientByEmail(String email) {
         try {
-            String result = BashConnect.run(AppConfig.getUserMangerScript(), "get_patient", email);
+            String result = BashConnect.run(AppConfig.getUserManagerScript(), "get_patient", email);
 
             if (result.startsWith("SUCCESS:")) {
                 String[] parts = result.split(":")[1].trim().split(",");
