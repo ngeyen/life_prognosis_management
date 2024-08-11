@@ -1,6 +1,7 @@
 #!/bin/bash
 
-USER_STORE="resources/data/user-store.txt"
+# Use environment variables for paths
+USER_STORE="${USER_STORE_PATH}"
 
 # Function to generate UUID
 generate_uuid() {
@@ -11,7 +12,6 @@ generate_uuid() {
 hash_password() {
     echo -n "$1" | sha256sum | awk '{print $1}'
 }
-
 
 # Function to view user
 view_user() {
@@ -40,7 +40,7 @@ get_patient_by_email() {
     fi
 }
 
-#Function to edit patient profile
+# Function to edit patient profile
 edit_patient_profile() {
     email="$2"
     first_name="$3"
@@ -77,18 +77,8 @@ edit_patient_profile() {
     fi
 }
 
-
 # Main logic
 case "$1" in
-    initialize)
-        init_registration "$@"
-        ;;
-    register)
-        register_user "$@"
-        ;;
-    login)
-        check_login "$@"
-        ;;
     update)
         edit_patient_profile "$@"
         ;;
@@ -98,12 +88,9 @@ case "$1" in
     get_patient)
         get_patient_by_email "$@"
         ;;
-    search_uuid)
-        is_uuid_valid "$@"
-        ;;
     *)
         echo "FAILURE: Invalid command"
-        echo "Usage: $0 {initialize|register|login|update|view|get_patient|search_uuid} [arguments]"
+        echo "Usage: $0 {view|get_patient|update} [arguments]"
         exit 1
         ;;
 esac

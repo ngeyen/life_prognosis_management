@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USER_STORE="resources/data/user-store.txt"
+USER_STORE="${USER_STORE_PATH}"
 
 # Function to hash password
 hash_password() {
@@ -36,3 +36,4 @@ case "$1" in
         echo "Usage: $0 {login} [arguments]"
         exit 1
         ;;
+esac
