@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USER_STORE="assets/core/user-store.txt"
+USER_STORE="resources/data/user-store.txt"
 
 # Function to generate UUID
 generate_uuid() {
