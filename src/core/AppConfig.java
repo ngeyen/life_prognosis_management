@@ -28,6 +28,14 @@ public class AppConfig {
         return getProperty("usr.script");
     }
 
+    public static String getAuthScript() {
+        return getProperty("auth.script");
+    }
+
+    public static String getRegisterScript() {
+        return getProperty("register.script");
+    }
+
     public static String getUserStorePath() {
         return getProperty("usr.store");
     }
