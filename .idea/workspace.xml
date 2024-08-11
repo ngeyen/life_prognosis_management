@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daf0fff7-b521-4ef8-a2ac-67ad3abacffa" name="Changes" comment="get user details utility clases">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/patient_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/patient_data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/statistics/services/SurvivalRate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/statistics/services/SurvivalRate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user_manager.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/user_manager.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-store.txt" beforeDir="false" afterPath="$PROJECT_DIR$/user-store.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,28 +29,28 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "ngeyen"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ngeyen&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:ngeyen/life_prognosis_management.git",
-    "accountId": "5c8b1541-8df7-4521-8818-4108b1127c75"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:ngeyen/life_prognosis_management.git&quot;,
+    &quot;accountId&quot;: &quot;5c8b1541-8df7-4521-8818-4108b1127c75&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "ngeyen",
-    "repository": "life_prognosis_management"
+    &quot;owner&quot;: &quot;ngeyen&quot;,
+    &quot;repository&quot;: &quot;life_prognosis_management&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -69,34 +59,41 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "#4 on dev",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "//wsl.localhost/Ubuntu-24.04/home/ngeyen/development/LifePrognosis",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "//wsl.localhost/Ubuntu-24.04/home/ngeyen/development/LifePrognosis/src/Main.java",
-    "settings.editor.selected.configurable": "advanced.settings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;//wsl.localhost/Ubuntu-24.04/home/ngeyen/development/LifePrognosis&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;//wsl.localhost/Ubuntu-24.04/home/ngeyen/development/LifePrognosis/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="\\wsl.localhost\Ubuntu-24.04\home\ngeyen\development\LifePrognosis" />
     </key>
@@ -120,18 +117,10 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="daf0fff7-b521-4ef8-a2ac-67ad3abacffa" name="Changes" comment="" />
+      <changelist id="daf0fff7-b521-4ef8-a2ac-67ad3abacffa" name="Changes" comment="get user details utility clases" />
       <created>1722433055527</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -141,6 +130,11 @@
       <workItem from="1722452540207" duration="43253000" />
       <workItem from="1722848113544" duration="10372000" />
       <workItem from="1722956035977" duration="46923000" />
+      <workItem from="1723383903821" duration="1049000" />
+      <workItem from="1723384964384" duration="77000" />
+      <workItem from="1723385210422" duration="257000" />
+      <workItem from="1723385471624" duration="56000" />
+      <workItem from="1723385736824" duration="457000" />
     </task>
     <task id="LOCAL-00001" summary="initializing the user management module as Auth">
       <option name="closed" value="true" />
@@ -532,55 +526,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="renamed PatientStat.java to PatientStatistic" />
-    <MESSAGE value="rename from SurvialRate.java" />
-    <MESSAGE value="edit patient profile" />
-    <MESSAGE value="edit patient profile utility function" />
-    <MESSAGE value="added export type enum and  Data Export class" />
-    <MESSAGE value="removed classes from statistics" />
-    <MESSAGE value="added bash connect and user utils" />
-    <MESSAGE value="added survival rate shell script and comments for calculations" />
-    <MESSAGE value="moved export type to helpers and refactor" />
-    <MESSAGE value="moved to helpers package" />
-    <MESSAGE value="start tracking life-expectancy.csv" />
-    <MESSAGE value="added view patient and survival rate calculations for patient" />
-    <MESSAGE value="created survival_rate.sh script" />
-    <MESSAGE value="added survival rate calculations as static function" />
-    <MESSAGE value="added view user function" />
-    <MESSAGE value="_handleBashCommands into helpers.BashConnect" />
-    <MESSAGE value="added the user utitlities class for more specific user implementations" />
-    <MESSAGE value="Created the help screen to help users better understand how to use the system" />
-    <MESSAGE value="Log exceptions whtn getting patient by email id" />
-    <MESSAGE value="Fixed login behavior &#10;added download schedule &#10;added view patient details" />
-    <MESSAGE value="get life expectancy bash script" />
-    <MESSAGE value="added method to calculate survival rate" />
-    <MESSAGE value="get patient by email method and view patient details" />
-    <MESSAGE value="changed user details and refactored method names" />
     <MESSAGE value="get user details utility clases" />
     <option name="LAST_COMMIT_MESSAGE" value="get user details utility clases" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.io.IOException" package="java.io" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
