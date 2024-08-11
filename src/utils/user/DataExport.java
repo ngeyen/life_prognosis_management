@@ -22,7 +22,7 @@ public class DataExport {
 
     // Method to export patient data to a CSV file
     public void exportPatientData(String exportFileName) {
-        String USER_STORE = "user-store.txt";
+        String USER_STORE = "data/user-store.txt";
         try (BufferedReader reader = new BufferedReader(new FileReader(USER_STORE));
                 FileWriter writer = new FileWriter(exportFileName)) {
 
