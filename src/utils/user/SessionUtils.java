@@ -37,13 +37,13 @@ public class SessionUtils {
                 String lastName = parts[3];
                 // String role = parts[4];
                 LocalDate dateOfBirth = LocalDate.parse(parts[5]);
-                boolean isHIVPositive = Boolean.parseBoolean(parts[6]);
+                boolean isHivPositive = Boolean.parseBoolean(parts[6]);
                 LocalDate diagnosisDate = !parts[7].isEmpty() ? LocalDate.parse(parts[7]) : null;
-                boolean isOnART = Boolean.parseBoolean(parts[8]);
+                boolean isOnArt = Boolean.parseBoolean(parts[8]);
                 LocalDate artStartDate = !parts[9].isEmpty() ? LocalDate.parse(parts[9]) : null;
                 String countryCode = parts[10];
 
-                return new Patient(firstName, lastName, email, uuid, dateOfBirth, isHIVPositive, diagnosisDate, isOnART,
+                return new Patient(firstName, lastName, email, uuid, dateOfBirth, isHivPositive, diagnosisDate, isOnArt,
                         artStartDate, countryCode);
             } else {
                 System.out.println("RESULTS: " + result);
