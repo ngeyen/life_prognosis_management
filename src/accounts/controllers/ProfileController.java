@@ -5,16 +5,15 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 
 import accounts.models.Patient;
 import accounts.services.UserManagementService;
 import datacompute.services.SurvivalRate;
+import utils.user.PatientDetailsUpdater;
 import utils.user.SessionUtils;
 
 public class ProfileController {
     private static final UserManagementService userService = new UserManagementService();
-    private static final Scanner scanner = new Scanner(System.in);
 
     public static void viewPatientDetails(String email) {
 
@@ -52,100 +51,52 @@ public class ProfileController {
                 String[] details = result.replace("SUCCESS: ", "").split(",");
                 String currentFirstName = details[2];
                 String currentLastName = details[3];
-                String currentDateOfBirth = details[5];
-                String currentHIVStatus = details[6];
-                String currentDiagnosisDate = details[7];
-                String currentOnARTStatus = details[8];
-                String currentARTStartDate = details[9];
+                LocalDate currentDateOfBirth = LocalDate.parse(details[5]);
+                boolean currentHIVStatus = Boolean.parseBoolean(details[6]);
+                LocalDate currentDiagnosisDate = currentHIVStatus ? LocalDate.parse(details[7]) : null;
+                boolean currentOnARTStatus = currentHIVStatus && Boolean.parseBoolean(details[8]);
+                LocalDate currentARTStartDate = currentOnARTStatus ? LocalDate.parse(details[9]) : null;
                 String currentCountryCode = details[10];
 
-                boolean keepUpdating = true;
+                // Create a Patient object with the current details
+                Patient patient = new Patient(
+                        currentFirstName, currentLastName, email, null, // PIN is not needed for profile update
+                        currentDateOfBirth, currentHIVStatus, currentDiagnosisDate,
+                        currentOnARTStatus, currentARTStartDate, currentCountryCode);
 
-                while (keepUpdating) {
-                    System.out.println("\nChoose the field you want to update:");
-                    System.out.println("1. First Name (" + currentFirstName + ")");
-                    System.out.println("2. Last Name (" + currentLastName + ")");
-                    System.out.println("3. Date of Birth (" + currentDateOfBirth + ")");
-                    System.out.println("4. HIV Positive (" + currentHIVStatus + ")");
-                    System.out.println("5. Diagnosis Date (" + currentDiagnosisDate + ")");
-                    System.out.println("6. On ART (" + currentOnARTStatus + ")");
-                    System.out.println("7. ART Start Date (" + currentARTStartDate + ")");
-                    System.out.println("8. Country ISO Code (" + currentCountryCode + ")");
-                    System.out.println("0.  Back");
+                // Use PatientDetailsUpdater to allow the user to update their profile
+                patient = PatientDetailsUpdater.updateDetails(patient);
 
-                    System.out.print("Enter your choice: ");
-                    int choice = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
+                // Update the patient profile with the new values
+                String updateResult = userService.editUserProfile(
+                        email,
+                        patient.getFirstName(),
+                        patient.getLastName(),
+                        patient.getDateOfBirth().toString(),
+                        patient.isHivPositive(),
+                        patient.getDiagnosisDate() != null ? patient.getDiagnosisDate().toString() : null,
+                        patient.isOnArt(),
+                        patient.getArtStartDate() != null ? patient.getArtStartDate().toString() : null,
+                        patient.getCountryCode());
 
-                    switch (choice) {
-                        case 1:
-                            System.out.print("Update First Name (" + currentFirstName + "): ");
-                            currentFirstName = scanner.nextLine();
-                            break;
-                        case 2:
-                            System.out.print("Update Last Name (" + currentLastName + "): ");
-                            currentLastName = scanner.nextLine();
-                            break;
-                        case 3:
-                            System.out.print("Update Date of Birth (" + currentDateOfBirth + ") (yyyy-mm-dd): ");
-                            currentDateOfBirth = scanner.nextLine();
-                            break;
-                        case 4:
-                            System.out.print("Update HIV Positive (" + currentHIVStatus + ") (true/false): ");
-                            currentHIVStatus = scanner.nextLine();
-                            break;
-                        case 5:
-                            System.out.print("Update Diagnosis Date (" + currentDiagnosisDate + ") (yyyy-mm-dd): ");
-                            currentDiagnosisDate = scanner.nextLine();
-                            break;
-                        case 6:
-                            System.out.print("Update On ART (" + currentOnARTStatus + ") (true/false): ");
-                            currentOnARTStatus = scanner.nextLine();
-                            break;
-                        case 7:
-                            System.out.print("Update ART Start Date (" + currentARTStartDate + ") (yyyy-mm-dd): ");
-                            currentARTStartDate = scanner.nextLine();
-                            break;
-                        case 8:
-                            System.out.print("Update Country ISO Code (" + currentCountryCode + "): ");
-                            currentCountryCode = scanner.nextLine();
-                            break;
-                        case 0:
-                            keepUpdating = false;
-                            break;
-                        default:
-                            System.out.println("Invalid choice. Please try again.");
-                            continue;
-                    }
-
-                    // Update the patient profile with the new values
-                    String updateResult = userService.editUserProfile(
-                            email, currentFirstName, currentLastName, currentDateOfBirth,
-                            Boolean.parseBoolean(currentHIVStatus), currentDiagnosisDate,
-                            Boolean.parseBoolean(currentOnARTStatus), currentARTStartDate, currentCountryCode);
-
-                    if (!updateResult.startsWith("SUCCESS")) {
-                        System.out.println("Failed to update patient profile: " + updateResult);
-                    }
+                if (!updateResult.startsWith("SUCCESS")) {
+                    System.out.println("Failed to update patient profile: " + updateResult);
+                } else {
+                    System.out.println("Profile update completed.");
+                    System.out.println(SurvivalRate.calculateSurvivalRate(email));
                 }
-
-                System.out.println("Profile update completed.");
-                System.out.println(SurvivalRate.calculateSurvivalRate(email));
-
             } else {
-                System.out.println("Patient not found.");
+                System.err.println("Patient not found.");
             }
 
         } catch (Exception e) {
-            System.out.println("An error occurred while updating the patient profile: " + e.getMessage());
+            System.err.println("An error occurred while updating the patient profile: " + e.getMessage());
         }
     }
 
     public static void downloadDeathScheduleICS(String email) {
         String icalendarFile = "expected_death_schedule.ics";
-        String survivalRateStr =
-
-                SurvivalRate.calculateSurvivalRate(email);
+        String survivalRateStr = SurvivalRate.calculateSurvivalRate(email);
         if (survivalRateStr.startsWith("Error") || survivalRateStr.startsWith("Patient not found")) {
             System.out.println(survivalRateStr);
             return;

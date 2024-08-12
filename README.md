@@ -47,65 +47,88 @@ password: patient123
 ### Setup Instructions
 
 1.  **Configure the Scripts**:
-    *   `cd src`
+    ```
+    cd project_directory
     
-    *  `sudo chmod 755 user_manager.sh`
-        
-    *  `sudo chmod 755 survival_rate.sh`
-        
-2.  **Compile the Code**:
+    sudo chmod 755 setup.sh
+    ./setup.sh
+    ````
 
-    *   `javac Main.java`
         
-3.  **Run the Application**:
-    
-    *   `java Main`
-        
-4.  **Follow the On-Screen Prompts**:
-    
-    *   The application will guide you through various operations, including patient registration, profile updates, and survival rate calculations.
+After the application executes, it will guide you through various operations, including patient registration, profile updates, and survival rate calculations.
 
 Project Structure
 -----------------
 
 ```
+.
 ├── README.md
-├── assets
-│   ├── life-expectancy.csv
+├── credentials.txt
+├── downloads
+│   └── patient_data.csv
+├── resources
+│   ├── data
+│   │   ├── life-expectancy.csv
+│   │   └── user-store.txt
 │   └── scripts
+│       ├── auth.sh
+│       ├── register.sh
+│       ├── search_country.sh
 │       ├── survival_rate.sh
 │       └── user_manager.sh
-├── credentials.txt
-├── data
-│   ├── patient_data.csv
-│   └── user-store.txt
-├── documentation
-│   ├── Activity Diagram.jpg
-│   ├── ClassDiagram.png
-│   └── Explanation of Diagrams.pdf
+├── setup.sh
 └── src
     ├── Main.java
-    ├── UserManager
+    ├── accounts
+    │   ├── controllers
+    │   │   ├── AuthController.java
+    │   │   ├── PatientRegistrationController.java
+    │   │   ├── ProfileController.java
+    │   │   └── RegistrationController.java
     │   ├── models
     │   │   ├── Admin.java
     │   │   ├── Patient.java
-    │   │   ├── User.java
-    │   │   └── UserRole.java
+    │   │   └── User.java
     │   └── services
-    │       └── UserService.java
-    ├── helpers
+    │       ├── AuthService.java
+    │       ├── RegistrationService.java
+    │       └── UserManagementService.java
+    ├── core
+    │   ├── AppConfig.java
     │   ├── BashConnect.java
-    │   ├── DataExport.java
-    │   ├── ExportType.java
-    │   ├── Help.java
-    │   └── UserUtils.java
-    └── statistics
-        ├── models
-        │   ├── Country.java
-        │   └── PatientStatistic.java
-        └── services
-            ├── StatServices.java
-            └── SurvivalRate.java
+    │   └── Docs.java
+    ├── dashboard
+    │   ├── controllers
+    │   │   ├── AdminDashboardController.java
+    │   │   └── PatientDashboardController.java
+    │   └── services
+    ├── datacompute
+    │   ├── models
+    │   │   ├── Country.java
+    │   │   └── PatientStatistics.java
+    │   └── services
+    │       ├── CountryService.java
+    │       ├── StatServices.java
+    │       └── SurvivalRate.java
+    └── utils
+        ├── enums
+        │   ├── ExportType.java
+        │   └── UserRole.java
+        ├── interractions
+        │   └── Reset.java
+        ├── user
+        │   ├── DataExport.java
+        │   ├── PatientDetailsUpdater.java
+        │   ├── RegistrationUtils.java
+        │   └── SessionUtils.java
+        └── validators
+            ├── BinaryDecisionValidator.java
+            ├── DateValidator.java
+            ├── EmailValidator.java
+            ├── InputValidator.java
+            ├── PasswordValidator.java
+            └── Validator.java
+
 ```
 
 Features

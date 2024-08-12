@@ -10,13 +10,13 @@ import core.AppConfig;
 import core.BashConnect;
 
 public class RegistrationService {
-    private static final String SCRIPT = AppConfig.getUserMangerScript();
+    private static final String registerScript = AppConfig.getRegisterScript();
     private static final Logger logger = Logger.getLogger(RegistrationService.class.getName());
 
     public String initializeRegistration(String email) {
         try {
 
-            String result = BashConnect.run(SCRIPT, "initialize", email);
+            String result = BashConnect.run(registerScript, "initialize", email);
             if (result.startsWith("SUCCESS:")) {
                 return result.split(":")[1].trim(); // Return the UUID
             } else {
@@ -33,18 +33,18 @@ public class RegistrationService {
         try {
             String result;
             if (user instanceof Patient patient) {
-                result = BashConnect.run(SCRIPT, "register",
-                        patient.getFirstName(), patient.getLastName(), patient.getEmail(), patient.getPin(),
+                result = BashConnect.run(registerScript, "register",
+                        patient.getFirstName(), patient.getLastName(), patient.getEmail(), patient.getPassword(),
                         patient.getRole().name().toLowerCase(), patient.getDateOfBirth().toString(),
-                        String.valueOf(patient.isHIVPositive()),
+                        String.valueOf(patient.isHivPositive()),
                         patient.getDiagnosisDate() != null ? patient.getDiagnosisDate().toString() : "",
-                        String.valueOf(patient.isOnART()),
+                        String.valueOf(patient.isOnArt()),
                         patient.getArtStartDate() != null ? patient.getArtStartDate().toString() : "",
                         patient.getCountryCode());
 
             } else if (user instanceof Admin) {
-                result = BashConnect.run(SCRIPT, "register",
-                        user.getFirstName(), user.getLastName(), user.getEmail(), user.getPin(),
+                result = BashConnect.run(registerScript, "register",
+                        user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(),
                         user.getRole().name().toLowerCase());
             } else {
                 throw new IllegalArgumentException("Unsupported user type");

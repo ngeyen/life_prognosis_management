@@ -6,20 +6,20 @@ import utils.enums.UserRole;
 
 public class Patient extends User {
     private LocalDate dateOfBirth;
-    private boolean isHIVPositive;
+    private boolean isHivPositive;
     private LocalDate diagnosisDate;
-    private boolean isOnART;
+    private boolean isOnArt;
     private LocalDate artStartDate;
     private String countryCode;
 
-    public Patient(String firstName, String lastName, String email, String pin,
-            LocalDate dateOfBirth, boolean isHIVPositive, LocalDate diagnosisDate,
-            boolean isOnART, LocalDate artStartDate, String countryCode) {
-        super(firstName, lastName, email, pin);
+    public Patient(String firstName, String lastName, String email, String password,
+            LocalDate dateOfBirth, boolean isHivPositive, LocalDate diagnosisDate,
+            boolean isOnArt, LocalDate artStartDate, String countryCode) {
+        super(firstName, lastName, email, password);
         this.dateOfBirth = dateOfBirth;
-        this.isHIVPositive = isHIVPositive;
+        this.isHivPositive = isHivPositive;
         this.diagnosisDate = diagnosisDate;
-        this.isOnART = isOnART;
+        this.isOnArt = isOnArt;
         this.artStartDate = artStartDate;
         this.countryCode = countryCode;
     }
@@ -38,12 +38,12 @@ public class Patient extends User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public boolean isHIVPositive() {
-        return isHIVPositive;
+    public boolean isHivPositive() {
+        return isHivPositive;
     }
 
-    public void setHIVPositive(boolean HIVPositive) {
-        isHIVPositive = HIVPositive;
+    public void setHivPositive(boolean HIVPositive) {
+        isHivPositive = HIVPositive;
     }
 
     public LocalDate getDiagnosisDate() {
@@ -54,12 +54,12 @@ public class Patient extends User {
         this.diagnosisDate = diagnosisDate;
     }
 
-    public boolean isOnART() {
-        return isOnART;
+    public boolean isOnArt() {
+        return isOnArt;
     }
 
-    public void setOnART(boolean onART) {
-        isOnART = onART;
+    public void setOnArt(boolean onART) {
+        isOnArt = onART;
     }
 
     public LocalDate getArtStartDate() {

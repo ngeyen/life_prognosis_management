@@ -1,50 +1,40 @@
 package core;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
 public class AppConfig {
-    private static Properties properties = new Properties();
-
-    static {
-        try (InputStream input = new FileInputStream("config.properties")) {
-            properties.load(input);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+    public static String getSurvivalRateScript() {
+        return System.getenv("SURVIVAL_RATE_SCRIPT");
     }
 
-    private static String getProperty(String key) {
-        return properties.getProperty(key);
-    }
-
-    public static String getSurvialRateScript() {
-        return getProperty("sr.script");
-    }
-
-    public static String getUserMangerScript() {
-        return getProperty("usr.script");
+    public static String getUserManagerScript() {
+        return System.getenv("USER_MANAGER_SCRIPT");
     }
 
     public static String getAuthScript() {
-        return getProperty("auth.script");
+        return System.getenv("AUTH_SCRIPT");
     }
 
     public static String getRegisterScript() {
-        return getProperty("register.script");
+        return System.getenv("REGISTER_SCRIPT");
     }
 
     public static String getUserStorePath() {
-        return getProperty("usr.store");
+        return System.getenv("USER_STORE_PATH");
     }
 
-    public static String lifeExpectancyPath() {
-        return getProperty("le.path");
+    public static String getCountryQueryScript() {
+        return System.getenv("SEARCH_COUNTRIES_SCRIPT");
     }
 
-    public static int getPinLength() {
-        return Integer.parseInt("pin.length");
+    public static String getPatientDataExportPath() {
+        return System.getenv("PATIENT_DATA_PATH");
+    }
+
+    public static String getLifeExpectancyPath() {
+        return System.getenv("LIFE_EXPECTANCY_PATH");
+    }
+
+    public static int getPasswordLength() {
+        String pinLength = System.getenv("PIN_LENGTH");
+        return pinLength != null ? Integer.parseInt(pinLength) : 4;
     }
 }

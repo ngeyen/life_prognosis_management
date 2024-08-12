@@ -16,7 +16,7 @@ public class SessionUtils {
     public static String getLifeExpectancy(String email) {
 
         try {
-            return BashConnect.run(AppConfig.getSurvialRateScript(), "country_le", email);
+            return BashConnect.run(AppConfig.getSurvivalRateScript(), "country_le", email);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error retrieving life expectancy", e);
             throw new RuntimeException("Failed to retrieve life expectancy", e);
@@ -26,7 +26,7 @@ public class SessionUtils {
     // Fetch patient details by email
     public static Patient getPatientByEmail(String email) {
         try {
-            String result = BashConnect.run(AppConfig.getUserMangerScript(), "get_patient", email);
+            String result = BashConnect.run(AppConfig.getUserManagerScript(), "get_patient", email);
 
             if (result.startsWith("SUCCESS:")) {
                 String[] parts = result.split(":")[1].trim().split(",");
@@ -37,13 +37,13 @@ public class SessionUtils {
                 String lastName = parts[3];
                 // String role = parts[4];
                 LocalDate dateOfBirth = LocalDate.parse(parts[5]);
-                boolean isHIVPositive = Boolean.parseBoolean(parts[6]);
+                boolean isHivPositive = Boolean.parseBoolean(parts[6]);
                 LocalDate diagnosisDate = !parts[7].isEmpty() ? LocalDate.parse(parts[7]) : null;
-                boolean isOnART = Boolean.parseBoolean(parts[8]);
+                boolean isOnArt = Boolean.parseBoolean(parts[8]);
                 LocalDate artStartDate = !parts[9].isEmpty() ? LocalDate.parse(parts[9]) : null;
                 String countryCode = parts[10];
 
-                return new Patient(firstName, lastName, email, uuid, dateOfBirth, isHIVPositive, diagnosisDate, isOnART,
+                return new Patient(firstName, lastName, email, uuid, dateOfBirth, isHivPositive, diagnosisDate, isOnArt,
                         artStartDate, countryCode);
             } else {
                 System.out.println("RESULTS: " + result);
@@ -60,7 +60,7 @@ public class SessionUtils {
     public static void downloadCSV(ExportType type) {
         if (type == ExportType.PATIENT_INFO) {
             DataExport dataExport = new DataExport();
-            dataExport.exportPatientData("downloads/patient_data.csv");
+            dataExport.exportPatientData(AppConfig.getPatientDataExportPath());
         }
     }
 }

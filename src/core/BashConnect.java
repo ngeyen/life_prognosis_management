@@ -5,11 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Logger;
 
-import accounts.services.UserManagementService;
 
 public class BashConnect {
 
-    private static final Logger logger = Logger.getLogger(UserManagementService.class.getName());
+    private static final Logger logger = Logger.getLogger(BashConnect.class.getName());
 
     /**
      * @return Returns from bash command
@@ -30,7 +29,7 @@ public class BashConnect {
 
         int exitCode = process.waitFor();
         if (exitCode != 0) {
-            logger.severe("Bash command execution failed" + output.toString());
+            logger.severe("Bash command execution failed - " + output.toString());
         }
 
         return output.toString().trim();

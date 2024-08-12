@@ -2,20 +2,25 @@
 import java.util.Scanner;
 
 import accounts.controllers.AuthController;
-import accounts.controllers.RegistrationController;
+import accounts.controllers.PatientRegistrationController;
+
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
 
+
     public static void main(String[] args) {
-        System.out.println("Welcome to the Life prognosis management System");
 
         while (true) {
 
-            System.out.println("1. Register with UUID");
-            System.out.println("2. Login");
+            System.out.println("\nLife Prognosis Management System");
 
-            System.out.println("3. Exit");
+            System.out.println("\nChoose an option to begin:");
+            System.out.println("1. Register with UUID");
+            System.out.println("2. Login\n");
+            System.out.println("0. Exit");
+            System.out.println("===============================");
+            System.out.print("Your choice: ");
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
@@ -23,12 +28,12 @@ public class Main {
             switch (choice) {
 
                 case 1:
-                    RegistrationController.completePatientRegistration();
+                    PatientRegistrationController.completePatientRegistration();
                     break;
                 case 2:
                     AuthController.login();
                     break;
-                case 3:
+                case 0:
                     System.out.println("Exiting...");
                     return;
                 default:
