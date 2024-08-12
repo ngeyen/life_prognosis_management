@@ -1,9 +1,11 @@
 package utils.validators;
 
+import java.io.Console;
+import java.util.Scanner;
 
 public class PasswordValidator implements Validator {
     private String errorMessage;
-
+private static final Scanner scanner = new Scanner(System.in);
     @Override
     public boolean validate(String password) {
         if (password == null || password.isEmpty()) {
@@ -13,17 +15,15 @@ public class PasswordValidator implements Validator {
         return true;
     }
 
-    public  String getPassword() {
+    // Method to get and confirm the password
+    public String getPassword() {
         while (true) {
-            System.out.print("Enter password: ");
-            String password = new String(System.console().readPassword());
-            if (!validate(password)) {
-                System.out.println(getErrorMessage());
-                continue;
-            }
-            System.out.print("Confirm password: ");
-            String confirmPassword = new String(System.console().readPassword());
-            if (password.equals(confirmPassword)) {
+            String password = readPassword("\nEnter password: ");
+            String confirmPassword = readPassword("Confirm password: ");
+
+            if (password.isEmpty()) {
+                System.out.println("Please set a password");
+            } else if (password.equals(confirmPassword)) {
                 return password;
             } else {
                 System.out.println("Passwords do not match. Please try again.");
@@ -34,5 +34,18 @@ public class PasswordValidator implements Validator {
     @Override
     public String getErrorMessage() {
         return errorMessage;
+    }
+    
+    // Method to read password with input hidden
+    public static String readPassword(String prompt) {
+        System.out.print(prompt);
+        Console console = System.console();
+        if (console != null) {
+            char[] passwordArray = console.readPassword();
+            return new String(passwordArray);
+        } else {
+            // Fallback to standard input if console is not available (e.g., in IDEs)
+            return scanner.nextLine();
+        }
     }
 }
