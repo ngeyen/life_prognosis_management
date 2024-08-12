@@ -1,5 +1,6 @@
-patient@example.com,ae2c252f-4e91-4aba-9ea8-2c01088d3a46,Asahe,GoodLuck,d4587ea9ead060c13fd994f21ecfa7926272a78854a2c20136b10a3c9e53e71e,patient,1998-12-08,true,2021-01-27,false,,rw
+patient@example.com,ae2c252f-4e91-4aba-9ea8-2c01088d3a46,Asahe,GoodLuck,d4587ea9ead060c13fd994f21ecfa7926272a78854a2c20136b10a3c9e53e71e,patient,1998-12-08,true,2021-01-27,false,,RW
 admin@example.com,e9eefd12-70a5-45b3-b29a-27f25d76fe0e,Admin,Nyungwe,240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9,admin
-billy@example.com,3b681d99-71ec-4037-83ce-28ac1808d00e,Billy One,Fon,fe4f039cbdcb5d3e65192efd7ac2c3e57e06741bc712b32655cca3bb1392b70a,patient,1985-10-12,true,2000-07-21,true,2003-01-27,ke
+billy@example.com,3b681d99-71ec-4037-83ce-28ac1808d00e,Billy One,Fon,fe4f039cbdcb5d3e65192efd7ac2c3e57e06741bc712b32655cca3bb1392b70a,patient,1985-10-12,true,2000-07-21,true,2003-01-27,KE
 violette@example.com,1ce449f7-317f-4547-9b60-4fd33778242d,Violette,Uwa,e9bab5a702c0e4d75a93aa572d065e938a91bee0b70c63ab1ad60fcfdba83a11,patient,1990-01-10,true,2000-01-01,true,2004-01-01,RW
 example1@example.com,6f582658-3df1-467d-a2cc-be4632f738bf,Grace,Examplee,6165d066d7dca67b64005d450b0d40ea06f58434084c54134d2e77fe190e47a7,patient,2000-01-10,true,2020-01-01,true,2022-02-01,RW
+sisi@example.com,ad437074-e0d7-48c6-b164-6229800f6b66,Si,Jovb,ac9aa2ec65df4da3d6d152e8b5137f197efce19a6d318a1f807a7e54f74e5545,patient,1997-02-12,true,2010-10-18,true,2014-12-28,KH
