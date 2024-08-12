@@ -60,7 +60,7 @@ public class SessionUtils {
     public static void downloadCSV(ExportType type) {
         if (type == ExportType.PATIENT_INFO) {
             DataExport dataExport = new DataExport();
-            dataExport.exportPatientData("downloads/patient_data.csv");
+            dataExport.exportPatientData(AppConfig.getPatientDataExportPath());
         }
     }
 }

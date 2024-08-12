@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 
+import core.AppConfig;
+
 public class DataExport {
 
     // Define the headers for the CSV file
@@ -22,7 +24,7 @@ public class DataExport {
 
     // Method to export patient data to a CSV file
     public void exportPatientData(String exportFileName) {
-        String USER_STORE = "data/user-store.txt";
+        String USER_STORE = AppConfig.getUserStorePath();
         try (BufferedReader reader = new BufferedReader(new FileReader(USER_STORE));
                 FileWriter writer = new FileWriter(exportFileName)) {
 
