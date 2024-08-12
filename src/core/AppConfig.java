@@ -21,11 +21,19 @@ public class AppConfig {
         return System.getenv("USER_STORE_PATH");
     }
 
+    public static String getCountryQueryScript() {
+        return System.getenv("SEARCH_COUNTRIES_SCRIPT");
+    }
+
+    public static String getPatientDataExportPath() {
+        return System.getenv("PATIENT_DATA_PATH");
+    }
+
     public static String getLifeExpectancyPath() {
         return System.getenv("LIFE_EXPECTANCY_PATH");
     }
 
-    public static int getPinLength() {
+    public static int getPasswordLength() {
         String pinLength = System.getenv("PIN_LENGTH");
         return pinLength != null ? Integer.parseInt(pinLength) : 4;
     }
