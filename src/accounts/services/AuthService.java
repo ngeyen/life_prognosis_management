@@ -19,7 +19,8 @@ public class AuthService {
                 String roleStr = result.split(": ")[2].strip(); // Extract role
                 return UserRole.valueOf(roleStr.toUpperCase());
             } else {
-                logger.warning("Failed to verify login credentials: " + result);
+                System.out.println("\n\nUnable to Login");
+                logger.log(Level.WARNING, "Looks like your credentials are incorrect");
                 return null;
             }
         } catch (Exception e) {
