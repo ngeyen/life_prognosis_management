@@ -40,7 +40,7 @@ public abstract class User {
         this.email = email;
     }
 
-    public String getPin() {
+    public String getPassword() {
         return pin;
     }
 
