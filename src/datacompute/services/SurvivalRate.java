@@ -29,11 +29,11 @@ public class SurvivalRate {
 
             int currentAge = Period.between(patient.getDateOfBirth(), LocalDate.now()).getYears();
 
-            if (!patient.isHIVPositive()) {
+            if (!patient.isHivPositive()) {
                 // Country's life expectancy - current age
                 return String.format("You have %d years remaining", lifeExpectancy - currentAge);
             } else {
-                if (!patient.isOnART()) {
+                if (!patient.isOnArt()) {
                     // If a patient is not on ART, the survival rate is 5 years minus time since
                     // diagnosis
                     int yearsSinceDiagnosis = Period.between(patient.getDiagnosisDate(), LocalDate.now()).getYears();
