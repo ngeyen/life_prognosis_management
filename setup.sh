@@ -12,7 +12,6 @@ export REGISTER_SCRIPT="$ROOT_DIR/resources/scripts/register.sh"
 
 export USER_STORE_PATH="$ROOT_DIR/resources/data/user-store.txt"
 export LIFE_EXPECTANCY_PATH="$ROOT_DIR/resources/data/life-expectancy.csv"
-export PIN_LENGTH=4  # Example of a non-path environment variable
 export PATIENT_DATA_PATH="$ROOT_DIR/downloads/patient_data.csv"
 
 
