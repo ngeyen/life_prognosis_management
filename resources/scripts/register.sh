@@ -22,11 +22,26 @@ init_registration() {
 
 # Check if the UUID exists in the user-store.txt
 is_uuid_valid() {
-    uuid="$1"
-    if grep -q ",$uuid," "$USER_STORE"; then
-        echo "SUCCESS: UUID exists"
+    uuid="$2" 
+
+    # Get the line containing the UUID
+    line=$(grep ",$uuid" "$USER_STORE")
+
+    # Check if the line was found
+    if [[ -z "$line" ]]; then
+        echo "FAILURE: UUID not found"
+        exit 1
+    fi
+
+    # Count the number of fields in the line
+    num_fields=$(echo "$line" | tr ',' '\n' | wc -l)
+
+    # Check if the number of fields is less than 3
+    if [[ $num_fields -lt 3 ]]; then
+        echo "SUCCESS: Line has less than 3 fields"
     else
-        echo "FAILURE: UUID does not exist"
+        echo "FAILURE: Line has more than 2 fields"
+    exit 1
     fi
 }
 
@@ -59,10 +74,10 @@ register_user() {
         country_iso_code="${12}"
 
         # Update the existing line with full information
-        sed -i "s|^$email,$uuid$|$email,$uuid,$first_name,$last_name,$hashed_password,$role,$date_of_birth,$hiv_positive,$diagnosis_date,$on_art,$art_start_date,$country_iso_code|" "$USER_STORE"
+        sed -i "s|^$email,$uuid,$||$email,$uuid,$first_name,$last_name,$hashed_password,$role,$date_of_birth,$hiv_positive,$diagnosis_date,$on_art,$art_start_date,$country_iso_code|" "$USER_STORE"
     else
         # For admin, just update with basic info
-        sed -i "s|^$email,$uuid$|$email,$uuid,$first_name,$last_name,$hashed_password,$role|" "$USER_STORE"
+        sed -i "s|^$email,$uuid,$||$email,$uuid,$first_name,$last_name,$hashed_password,$role|" "$USER_STORE"
     fi
 
     echo "SUCCESS: User registered successfully"
