@@ -13,7 +13,7 @@ public class UserManagementService {
     private static final Logger logger = Logger.getLogger(UserManagementService.class.getName());
 
     public String editUserProfile(String email, String firstName, String lastName,
-            String dateOfBirth, Boolean isHIVPositive,
+            String dateOfBirth, Boolean isHivPositive,
             String diagnosisDate, Boolean isOnART,
             String artStartDate, String countryCode) {
         try {
@@ -22,10 +22,10 @@ public class UserManagementService {
                     firstName.isEmpty() ? "keep_current" : firstName,
                     lastName.isEmpty() ? "keep_current" : lastName,
                     dateOfBirth.isEmpty() ? "keep_current" : dateOfBirth,
-                    isHIVPositive == null ? "keep_current" : String.valueOf(isHIVPositive),
-                    diagnosisDate.isEmpty() ? "keep_current" : diagnosisDate,
+                    isHivPositive == null ? "keep_current" : String.valueOf(isHivPositive),
+                    diagnosisDate == null ? "keep_current" : diagnosisDate,
                     isOnART == null ? "keep_current" : String.valueOf(isOnART),
-                    artStartDate.isEmpty() ? "keep_current" : artStartDate,
+                    artStartDate == null ? "keep_current" : artStartDate,
                     countryCode.isEmpty() ? "keep_current" : countryCode);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error editing patient profile", e);
