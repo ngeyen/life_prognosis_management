@@ -34,17 +34,17 @@ public class RegistrationService {
             String result;
             if (user instanceof Patient patient) {
                 result = BashConnect.run(registerScript, "register",
-                        patient.getFirstName(), patient.getLastName(), patient.getEmail(), patient.getPin(),
+                        patient.getFirstName(), patient.getLastName(), patient.getEmail(), patient.getPassword(),
                         patient.getRole().name().toLowerCase(), patient.getDateOfBirth().toString(),
-                        String.valueOf(patient.isHIVPositive()),
+                        String.valueOf(patient.isHivPositive()),
                         patient.getDiagnosisDate() != null ? patient.getDiagnosisDate().toString() : "",
-                        String.valueOf(patient.isOnART()),
+                        String.valueOf(patient.isOnArt()),
                         patient.getArtStartDate() != null ? patient.getArtStartDate().toString() : "",
                         patient.getCountryCode());
 
             } else if (user instanceof Admin) {
                 result = BashConnect.run(registerScript, "register",
-                        user.getFirstName(), user.getLastName(), user.getEmail(), user.getPin(),
+                        user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(),
                         user.getRole().name().toLowerCase());
             } else {
                 throw new IllegalArgumentException("Unsupported user type");
