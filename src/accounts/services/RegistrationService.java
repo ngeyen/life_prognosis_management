@@ -49,6 +49,7 @@ public class RegistrationService {
             } else {
                 throw new IllegalArgumentException("Unsupported user type");
             }
+            System.err.println("Registration Result"+result);
             return result.startsWith("SUCCESS");
 
         } catch (Exception e) {
