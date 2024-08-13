@@ -35,7 +35,7 @@ public class SessionUtils {
                 String uuid = parts[1];
                 String firstName = parts[2];
                 String lastName = parts[3];
-                // String role = parts[4];
+                String passwordHash = parts[4];
                 LocalDate dateOfBirth = LocalDate.parse(parts[5]);
                 boolean isHivPositive = Boolean.parseBoolean(parts[6]);
                 LocalDate diagnosisDate = !parts[7].isEmpty() ? LocalDate.parse(parts[7]) : null;
@@ -43,8 +43,8 @@ public class SessionUtils {
                 LocalDate artStartDate = !parts[9].isEmpty() ? LocalDate.parse(parts[9]) : null;
                 String countryCode = parts[10];
 
-                return new Patient(firstName, lastName, email, uuid, dateOfBirth, isHivPositive, diagnosisDate, isOnArt,
-                        artStartDate, countryCode);
+                return new Patient(firstName, lastName, email, passwordHash, dateOfBirth, isHivPositive, diagnosisDate, isOnArt,
+                        artStartDate, countryCode,uuid);
             } else {
                 System.out.println("RESULTS: " + result);
 
