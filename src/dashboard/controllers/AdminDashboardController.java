@@ -5,6 +5,7 @@ import java.util.Scanner;
 import accounts.controllers.RegistrationController;
 import core.Docs;
 import utils.enums.ExportType;
+import utils.interractions.Reset;
 import utils.user.SessionUtils;
 
 public class AdminDashboardController {
@@ -12,7 +13,7 @@ public class AdminDashboardController {
 
     public static void showDashboard() {
         boolean isLoggedIn = true;
-
+Reset.clearConsole();
         while (isLoggedIn) {
             System.out.println("Admin Menu.");
             System.out.println("\nSelect an option to proceed: ");
@@ -20,8 +21,10 @@ public class AdminDashboardController {
             System.out.println("2. Add an Admin");
             System.out.println("3. Download Patient Info");
             System.out.println("4. Download Patient Analytics");
-            System.out.println("\n=========================");
-            System.out.println("5. Help \t 0. Logout");
+            System.out.println("\n5. Help \t 0. Logout\n");
+            System.out.println("=========================");
+
+            System.out.print("\nYour choice: ");
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
