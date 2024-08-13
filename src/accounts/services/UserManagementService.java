@@ -2,6 +2,7 @@ package accounts.services;
 
 import java.util.logging.Logger;
 
+import accounts.models.Patient;
 import core.AppConfig;
 import core.BashConnect;
 
@@ -11,6 +12,19 @@ public class UserManagementService {
 
     private static final String userManagerScript = AppConfig.getUserManagerScript();
     private static final Logger logger = Logger.getLogger(UserManagementService.class.getName());
+
+    public String editUserProfile(Patient updatedPatient) {
+    try {
+        // Construct the updated line from the Patient object
+        String updatedLine = updatedPatient.toString();
+
+        // Call the bash script with the email and updated line
+        return BashConnect.run(userManagerScript, "update", updatedPatient.getEmail(), updatedLine);
+    } catch (Exception e) {
+        logger.log(Level.SEVERE, "Error editing patient profile", e);
+        throw new RuntimeException("Failed to edit patient profile", e);
+    }
+}
 
     public String editUserProfile(String email, String firstName, String lastName,
             String dateOfBirth, Boolean isHivPositive,
@@ -42,5 +56,14 @@ public class UserManagementService {
         }
 
     }
+        public String getUser(String email) {
+        try {
+            return BashConnect.run(userManagerScript, "user_row", email);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Error getting user - ", e);
+            throw new RuntimeException("Failed to view user", e);
+        }
 
+    }
+    
 }

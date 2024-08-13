@@ -20,7 +20,7 @@ public class Main {
             System.out.println("2. Login\n");
             System.out.println("0. Exit");
             System.out.println("===============================");
-            System.out.print("Your choice: ");
+            System.out.print("\nYour choice: ");
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline

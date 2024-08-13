@@ -1,5 +1,6 @@
 First Name,Last Name,Email,Date of Birth,HIV Positive,Diagnosis Date,On ART,ART Start Date,Country Code
-Asahe,GoodLuck,patient@example.com,1998-12-08,true,2021-01-27,false,,rw
-Billy One,Fon,billy@example.com,1985-10-12,true,2000-07-21,true,2003-01-27,ke
+Asahe,GoodLuck,patient@example.com,1998-12-08,true,2021-01-27,false,,RW
+Billy One,Fon,billy@example.com,1985-10-12,true,2000-07-21,true,2003-01-27,KE
 Violette,Uwa,violette@example.com,1990-01-10,true,2000-01-01,true,2004-01-01,RW
 Grace,Examplee,example1@example.com,2000-01-10,true,2020-01-01,true,2022-02-01,RW
+Sami,maoe,maoe@example.com,1998-08-29,true,1999-10-20,false,,RW

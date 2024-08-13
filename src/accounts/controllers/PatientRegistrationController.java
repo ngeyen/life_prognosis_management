@@ -48,9 +48,9 @@ public class PatientRegistrationController {
         }
 
         // Collect user information
-        String firstName = inputValidator.getNonEmptyInput("\nEnter first name: ");
-        String lastName = inputValidator.getNonEmptyInput("Enter last name: ");
-        String email = emailValidator.getValidEmail("Enter Email: "); 
+        String firstName = inputValidator.getNonEmptyInput("\nFirst name: ");
+        String lastName = inputValidator.getNonEmptyInput("Last name: ");
+        String email = emailValidator.getValidEmail("E-mail address: "); 
         String password = passwordValidator.getPassword();
         System.out.println("\n\nHIV Diagnosis Details:");
         // Validate date of birth
@@ -106,7 +106,7 @@ public class PatientRegistrationController {
 
         // Get country code
         String countryCode = CountryService.getCountryCode();
-        Patient patient = new Patient(firstName, lastName, email, password, dateOfBirth, isHivPositive, diagnosisDate, isOnArt, artStartDate, countryCode);
+        Patient patient = new Patient(firstName, lastName, email, password, dateOfBirth, isHivPositive, diagnosisDate, isOnArt, artStartDate, countryCode, null);
 
         // Allow user to review and update details
         patient = PatientDetailsUpdater.updateDetails(patient);
@@ -114,7 +114,7 @@ public class PatientRegistrationController {
         // Confirm and finalize registration
         boolean confirmation = decisionValidator.getBinaryDecision("\nIs this information correct? (1. Yes / 0. No): ");
         if (!confirmation) {
-            System.out.println("Registration cancelled.");
+            System.err.println("Registration cancelled.");
             return;
         }
 
@@ -126,8 +126,7 @@ public class PatientRegistrationController {
             System.out.println("Patient registration completed successfully.");
 
         } else {
-            Reset.clearConsole();
-            System.out.println("Failed to complete registration. Please try again.");
+            System.err.println("Failed to complete registration. Please try again.");
         }
     }
 }

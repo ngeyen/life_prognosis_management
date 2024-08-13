@@ -45,39 +45,14 @@ public class ProfileController {
 
     public static void editPatientProfile(String email) {
         try {
-            String result = userService.getUserDetail(email);
-
-            if (result.startsWith("SUCCESS")) {
-                String[] details = result.replace("SUCCESS: ", "").split(",");
-                String currentFirstName = details[2];
-                String currentLastName = details[3];
-                LocalDate currentDateOfBirth = LocalDate.parse(details[5]);
-                boolean currentHIVStatus = Boolean.parseBoolean(details[6]);
-                LocalDate currentDiagnosisDate = currentHIVStatus ? LocalDate.parse(details[7]) : null;
-                boolean currentOnARTStatus = currentHIVStatus && Boolean.parseBoolean(details[8]);
-                LocalDate currentARTStartDate = currentOnARTStatus ? LocalDate.parse(details[9]) : null;
-                String currentCountryCode = details[10];
-
-                // Create a Patient object with the current details
-                Patient patient = new Patient(
-                        currentFirstName, currentLastName, email, null, // PIN is not needed for profile update
-                        currentDateOfBirth, currentHIVStatus, currentDiagnosisDate,
-                        currentOnARTStatus, currentARTStartDate, currentCountryCode);
-
+            Patient patient = SessionUtils.getPatientByEmail(email);
+            if (patient != null) {
+             
                 // Use PatientDetailsUpdater to allow the user to update their profile
                 patient = PatientDetailsUpdater.updateDetails(patient);
 
                 // Update the patient profile with the new values
-                String updateResult = userService.editUserProfile(
-                        email,
-                        patient.getFirstName(),
-                        patient.getLastName(),
-                        patient.getDateOfBirth().toString(),
-                        patient.isHivPositive(),
-                        patient.getDiagnosisDate() != null ? patient.getDiagnosisDate().toString() : null,
-                        patient.isOnArt(),
-                        patient.getArtStartDate() != null ? patient.getArtStartDate().toString() : null,
-                        patient.getCountryCode());
+                String updateResult = userService.editUserProfile(patient);
 
                 if (!updateResult.startsWith("SUCCESS")) {
                     System.out.println("Failed to update patient profile: " + updateResult);

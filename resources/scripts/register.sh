@@ -56,32 +56,36 @@ register_user() {
     # Hash the password
     hashed_password=$(hash_password "$password")
 
-    # Check if the email already exists (excluding the initialization entry)
-    if grep -q "^$email,[^,]*$" "$USER_STORE"; then
+    # Check if the email already exists
+    if grep -q "^$email," "$USER_STORE"; then
         existing_line=$(grep "^$email," "$USER_STORE")
         uuid=$(echo "$existing_line" | cut -d',' -f2)
+   
+        if [ "$role" == "admin" ]; then
+            # Generate a new UUID for the admin
+            uuid=$(generate_uuid)
+            echo "$email,$uuid,$first_name,$last_name,$hashed_password,$role" >> "$USER_STORE"
+            echo "SUCCESS: Admin registered successfully"
+            exit 0 
+        else
+            date_of_birth="$7"
+            hiv_positive="$8"
+            diagnosis_date="$9"
+            on_art="${10}"
+            art_start_date="${11}"
+            country_iso_code="${12}"
+
+            # Update the existing line with full information for a patient
+            sed -i "s|^$email,$uuid.*|$email,$uuid,$first_name,$last_name,$hashed_password,$role,$date_of_birth,$hiv_positive,$diagnosis_date,$on_art,$art_start_date,$country_iso_code|" "$USER_STORE"
+            echo "SUCCESS: User registered successfully"
+            exit 0
+        fi
     else
         echo "FAILURE: User not initialized"
         exit 1
     fi
-
-    if [ "$role" == "patient" ]; then
-        date_of_birth="$7"
-        hiv_positive="$8"
-        diagnosis_date="$9"
-        on_art="${10}"
-        art_start_date="${11}"
-        country_iso_code="${12}"
-
-        # Update the existing line with full information
-        sed -i "s|^$email,$uuid,$||$email,$uuid,$first_name,$last_name,$hashed_password,$role,$date_of_birth,$hiv_positive,$diagnosis_date,$on_art,$art_start_date,$country_iso_code|" "$USER_STORE"
-    else
-        # For admin, just update with basic info
-        sed -i "s|^$email,$uuid,$||$email,$uuid,$first_name,$last_name,$hashed_password,$role|" "$USER_STORE"
-    fi
-
-    echo "SUCCESS: User registered successfully"
 }
+
 
 # Main logic
 case "$1" in
