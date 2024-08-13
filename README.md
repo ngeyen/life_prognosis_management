@@ -49,12 +49,16 @@ password: patient123
 1.  **Configure the Scripts**:
     ```
     cd project_directory
-    
+
     sudo chmod 755 setup.sh
     ./setup.sh
+
     ````
 
-        
+You might encounter an issue with the setup script. due to some unwanted characters stored in the script. the following command would help
+
+    `sed -i 's/\r$//' ./setup.sh`
+    
 After the application executes, it will guide you through various operations, including patient registration, profile updates, and survival rate calculations.
 
 Project Structure
