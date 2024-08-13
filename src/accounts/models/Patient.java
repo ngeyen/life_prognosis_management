@@ -1,10 +1,12 @@
 package accounts.models;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import utils.enums.UserRole;
 
 public class Patient extends User {
+    private String uuid;
     private LocalDate dateOfBirth;
     private boolean isHivPositive;
     private LocalDate diagnosisDate;
@@ -14,7 +16,7 @@ public class Patient extends User {
 
     public Patient(String firstName, String lastName, String email, String password,
             LocalDate dateOfBirth, boolean isHivPositive, LocalDate diagnosisDate,
-            boolean isOnArt, LocalDate artStartDate, String countryCode) {
+            boolean isOnArt, LocalDate artStartDate, String countryCode, String uuid) {
         super(firstName, lastName, email, password);
         this.dateOfBirth = dateOfBirth;
         this.isHivPositive = isHivPositive;
@@ -22,6 +24,7 @@ public class Patient extends User {
         this.isOnArt = isOnArt;
         this.artStartDate = artStartDate;
         this.countryCode = countryCode;
+        this.uuid = uuid;
     }
 
     @Override
@@ -76,5 +79,29 @@ public class Patient extends User {
 
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
+    }
+    @Override
+    public String toString() {
+        String hivStatus = isHivPositive ? "true" : "false";
+        String onArt = isOnArt ? "true" : "false";
+        String dateOfBirthStr = dateOfBirth != null ? dateOfBirth.toString() : "";
+        String diagnosisDateStr = diagnosisDate != null ? diagnosisDate.toString() : "";
+        String artStartDateStr = artStartDate != null ? artStartDate.toString() : "";
+        String uuidString = uuid==null || uuid.isBlank() ? UUID.randomUUID().toString() : uuid;
+
+
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
+                getEmail(),
+                uuidString,
+                getFirstName(),
+                getLastName(),
+                getPassword(), 
+                "patient", 
+                dateOfBirthStr,
+                hivStatus,
+                diagnosisDateStr,
+                onArt,
+                artStartDateStr,
+                countryCode);
     }
 }
