@@ -1,4 +1,5 @@
 #!/bin/bash
+
 clear
 # Get the absolute path to the root directory
 ROOT_DIR=$(dirname "$(readlink -f "$0")")
@@ -21,6 +22,13 @@ chmod +x "$SURVIVAL_RATE_SCRIPT"
 chmod +x "$AUTH_SCRIPT"
 chmod +x "$REGISTER_SCRIPT"
 chmod +x "$SEARCH_COUNTRIES_SCRIPT"
+
+# Fixed the /bin/bash^M problem
+sed -i 's/\r$//' "$USER_MANAGER_SCRIPT"
+sed -i 's/\r$//' "$SURVIVAL_RATE_SCRIPT"
+sed -i 's/\r$//' "$AUTH_SCRIPT"
+sed -i 's/\r$//' "$REGISTER_SCRIPT"
+sed -i 's/\r$//' "$SEARCH_COUNTRIES_SCRIPT"
 
 echo "Environment variables set and scripts are now executable."
 
