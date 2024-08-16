@@ -20,26 +20,22 @@ public class ProfileController {
     public static void viewPatientDetails(String email) {
 
         try {
-            String result = userService.getUserDetail(email);
 
-            if (result.startsWith("SUCCESS")) {
-                String[] details = result.replace("SUCCESS: ", "").split(",");
+            Patient patient = PatientUtils.getPatientByEmail(email);
+            if (patient != null) {
 
                 // Display patient details excluding the password
                 System.out.println("Patient Details:");
-                System.out.println("First Name: " + details[2]);
-                System.out.println("Last Name: " + details[3]);
+                System.out.println("First Name: " + patient.getFirstName());
+                System.out.println("Last Name: " + patient.getLastName());
                 // System.out.println("Role: " + details[4]);
-                System.out.println("Date of Birth: " + details[5]);
-                System.out.println("HIV Positive: " + details[6]);
-                System.out.println("Diagnosis Date: " + details[7]);
-                System.out.println("On ART: " + details[8]);
-                System.out.println("ART Start Date: " + details[9]);
-                System.out.println("Country Code: " + details[10]);
-            } else {
-
-                System.out.println("Patient not found.");
-
+                System.out.println("Date of Birth: " + patient.getDateOfBirth());
+                System.out.println("HIV Positive: " + patient.isHivPositive());
+                System.out.println("Diagnosis Date: " + patient.getDiagnosisDate());
+                System.out.println("On ART: " + patient.isOnArt());
+                System.out.println("ART Start Date: " +patient.getArtStartDate());
+                System.out.println("Country Code: " + patient.getCountryCode());            } else {
+                System.err.println("Patient not found.");
             }
         } catch (Exception e) {
             System.err.println("An error occurred while retrieving patient details: " + e.getMessage());
