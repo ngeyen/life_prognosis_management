@@ -1,6 +1,9 @@
 package accounts.models;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import utils.enums.UserRole;
@@ -25,6 +28,18 @@ public class Patient extends User {
         this.artStartDate = artStartDate;
         this.countryCode = countryCode;
         this.uuid = uuid;
+    }
+
+    public Patient(String uuid,  LocalDate dateOfBirth, boolean isHivPositive, LocalDate diagnosisDate, boolean isOnArt, LocalDate artStartDate, String countryCode
+            ) {
+               super(null, null, null, null);   
+               this.dateOfBirth = dateOfBirth;
+               this.isHivPositive = isHivPositive;
+               this.diagnosisDate = diagnosisDate;
+               this.isOnArt = isOnArt;
+               this.artStartDate = artStartDate;
+               this.countryCode = countryCode;
+               this.uuid = uuid;
     }
 
     @Override
@@ -80,6 +95,41 @@ public class Patient extends User {
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
     }
+
+    public static List<Patient> getAllPatients(String data) {
+        List<Patient> users = new ArrayList<>();
+        String[] lines = data.split("\n");
+
+        for (String line : lines) {
+            String[] fields = line.split(",");
+            if (fields.length >= 6) {
+                // Create User objects from fields
+
+                String uuid = fields[0];
+                LocalDate dateOfBirth = LocalDate.parse(fields[1]);
+                boolean isHivPositive = Boolean.parseBoolean(fields[2]);
+                LocalDate diagnosisDate = !fields[3].isEmpty() ? LocalDate.parse(fields[3]) : null;
+                boolean isOnArt = Boolean.parseBoolean(fields[4]);
+                LocalDate artStartDate = !fields[5].isEmpty() ? LocalDate.parse(fields[5]) : null;
+                String countryCode = fields[6];
+                Patient user = new Patient(uuid, dateOfBirth, isHivPositive, diagnosisDate, isOnArt, artStartDate,
+                        countryCode);
+                users.add(user);
+            }
+        }
+
+        return users;
+    }
+
+    public int calculateAge() {
+        LocalDate currentDate = LocalDate.now();
+
+        if (this.dateOfBirth == null || currentDate == null) {
+            throw new IllegalArgumentException("Birth date and current date must not be null");
+        }
+        return Period.between(this.dateOfBirth, currentDate).getYears();
+    }
+    
     @Override
     public String toString() {
         String hivStatus = isHivPositive ? "true" : "false";
