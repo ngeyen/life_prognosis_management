@@ -109,7 +109,7 @@ public class PatientRegistrationController {
         Patient patient = new Patient(firstName, lastName, email, password, dateOfBirth, isHivPositive, diagnosisDate, isOnArt, artStartDate, countryCode, null);
 
         // Allow user to review and update details
-        patient = PatientDetailsUpdater.updateDetails(patient);
+        patient = PatientDetailsUpdater.updateDetails(patient, "Review Details");
 
         // Confirm and finalize registration
         boolean confirmation = decisionValidator.getBinaryDecision("\nIs this information correct? (1. Yes / 0. No): ");
