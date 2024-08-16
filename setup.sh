@@ -14,6 +14,8 @@ export REGISTER_SCRIPT="$ROOT_DIR/resources/scripts/register.sh"
 export USER_STORE_PATH="$ROOT_DIR/resources/data/user-store.txt"
 export LIFE_EXPECTANCY_PATH="$ROOT_DIR/resources/data/life-expectancy.csv"
 export PATIENT_DATA_PATH="$ROOT_DIR/downloads/patient_data.csv"
+export PATIENT_STATS_PATH="$ROOT_DIR/downloads/patient_statistics.csv"
+export ICALENDAR="$ROOT_DIR/downloads/life_expectancy.ics"
 
 
 # Make all relevant scripts executable
