@@ -13,6 +13,11 @@ hash_password() {
     echo -n "$1" | sha256sum | awk '{print $1}'
 }
 
+get_users(){
+# Extract data from USER_STORE based on fields
+awk -F',' '{print $2","$7","$8","$9","$10","$11","$12}' "$USER_STORE"
+}
+
 # Function to view user
 view_user() {
     email="$2"
@@ -86,6 +91,9 @@ case "$1" in
      ;;
     view)
         view_user "$@"
+        ;;
+    all_users)
+        get_users "$@"
         ;;
     get_patient)
         get_patient_by_email "$@"
