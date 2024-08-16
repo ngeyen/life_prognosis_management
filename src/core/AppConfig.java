@@ -29,6 +29,13 @@ public class AppConfig {
         return System.getenv("PATIENT_DATA_PATH");
     }
 
+    public static String getStaticticsPath() {
+        return System.getenv("PATIENT_STATS_PATH");
+    }
+    
+    public static String getIcalendarPath() {
+        return System.getenv("ICALENDAR");
+    }
     public static String getLifeExpectancyPath() {
         return System.getenv("LIFE_EXPECTANCY_PATH");
     }
