@@ -7,9 +7,8 @@ import java.util.logging.Logger;
 import accounts.models.Patient;
 import core.AppConfig;
 import core.BashConnect;
-import utils.enums.ExportType;
 
-public class SessionUtils {
+public class PatientUtils {
 
     private static final Logger logger = Logger.getLogger("UserManager");
 
@@ -57,10 +56,4 @@ public class SessionUtils {
         }
     }
 
-    public static void downloadCSV(ExportType type) {
-        if (type == ExportType.PATIENT_INFO) {
-            DataExport dataExport = new DataExport();
-            dataExport.exportPatientData(AppConfig.getPatientDataExportPath());
-        }
-    }
 }
