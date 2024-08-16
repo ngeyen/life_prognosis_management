@@ -33,7 +33,7 @@ public class PatientDashboardController {
                     ProfileController.viewPatientDetails(email);
                     break;
                 case 2:
-                    ProfileController.editPatientProfile(email);
+                    ProfileController.editPatientProfile(email, "Update Profile");
                     break;
                 case 3:
                     ProfileController.downloadDeathScheduleICS(email);
