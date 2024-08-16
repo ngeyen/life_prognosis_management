@@ -17,13 +17,13 @@ public class PatientDetailsUpdater {
     private static final DateValidator dateValidator = new DateValidator();
     private static final BinaryDecisionValidator decisionValidator = new BinaryDecisionValidator();
 
-    public static Patient updateDetails(Patient patient) {
+    public static Patient updateDetails(Patient patient, String action) {
         boolean updating = true;
 
         while (updating) {
             Reset.clearConsole();
-            System.out.print("Update Profile Info" +"\n====================");
-            System.out.println("\nReview your profile Details:");
+            System.out.println(action +"\n====================");
+            System.out.println("Review your profile Details:");
             System.out.println("1. First Name: " + patient.getFirstName());
             System.out.println("2. Last Name: " + patient.getLastName());
             System.out.println("3. Email: " + patient.getEmail());
