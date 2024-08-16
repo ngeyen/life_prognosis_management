@@ -54,11 +54,17 @@ password: patient123
     ./setup.sh
 
     ````
+**Possible error fix**
 
-You might encounter an issue with the setup script. due to some unwanted characters stored in the script. the following command would help
+If you get this error,
+
+`setup.sh: bad interpreter: /bin/bash^M: no such file or directory`
+
+then you need to remove the carriage return at the end of the line. You can do this by
+running the following command
 
     `sed -i 's/\r$//' ./setup.sh`
-    
+
 After the application executes, it will guide you through various operations, including patient registration, profile updates, and survival rate calculations.
 
 Project Structure
