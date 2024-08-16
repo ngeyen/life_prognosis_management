@@ -1,6 +1,6 @@
 package datacompute.services;
 
-import utils.user.SessionUtils;
+import utils.user.PatientUtils;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -10,14 +10,14 @@ import accounts.models.Patient;
 public class SurvivalRate {
 
     public static String calculateSurvivalRate(String email) {
-        Patient patient = SessionUtils.getPatientByEmail(email);
+        Patient patient = PatientUtils.getPatientByEmail(email);
         if (patient == null) {
             return "Patient not found";
         }
 
         try {
             // Get life expectancy from the Bash script
-            String lifeExpectancyResult = SessionUtils.getLifeExpectancy(email);
+            String lifeExpectancyResult = PatientUtils.getLifeExpectancy(email);
             if (!lifeExpectancyResult.startsWith("SUCCESS")) {
                 return "Error retrieving life expectancy: " + lifeExpectancyResult;
             }
