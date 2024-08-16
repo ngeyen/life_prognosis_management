@@ -8,9 +8,11 @@ import java.time.format.DateTimeFormatter;
 
 import accounts.models.Patient;
 import accounts.services.UserManagementService;
+import core.AppConfig;
 import datacompute.services.SurvivalRate;
+import utils.interractions.Reset;
 import utils.user.PatientDetailsUpdater;
-import utils.user.SessionUtils;
+import utils.user.PatientUtils;
 
 public class ProfileController {
     private static final UserManagementService userService = new UserManagementService();
@@ -35,6 +37,7 @@ public class ProfileController {
                 System.out.println("ART Start Date: " + details[9]);
                 System.out.println("Country Code: " + details[10]);
             } else {
+
                 System.out.println("Patient not found.");
 
             }
@@ -43,13 +46,13 @@ public class ProfileController {
         }
     }
 
-    public static void editPatientProfile(String email) {
+    public static void editPatientProfile(String email, String action) {
         try {
-            Patient patient = SessionUtils.getPatientByEmail(email);
+            Patient patient = PatientUtils.getPatientByEmail(email);
             if (patient != null) {
              
                 // Use PatientDetailsUpdater to allow the user to update their profile
-                patient = PatientDetailsUpdater.updateDetails(patient);
+                patient = PatientDetailsUpdater.updateDetails(patient, action);
 
                 // Update the patient profile with the new values
                 String updateResult = userService.editUserProfile(patient);
@@ -57,6 +60,7 @@ public class ProfileController {
                 if (!updateResult.startsWith("SUCCESS")) {
                     System.out.println("Failed to update patient profile: " + updateResult);
                 } else {
+                    Reset.clearConsole();
                     System.out.println("Profile update completed.");
                     System.out.println(SurvivalRate.calculateSurvivalRate(email));
                 }
@@ -70,7 +74,7 @@ public class ProfileController {
     }
 
     public static void downloadDeathScheduleICS(String email) {
-        String icalendarFile = "expected_death_schedule.ics";
+        String icalendarFile = AppConfig.getIcalendarPath();
         String survivalRateStr = SurvivalRate.calculateSurvivalRate(email);
         if (survivalRateStr.startsWith("Error") || survivalRateStr.startsWith("Patient not found")) {
             System.out.println(survivalRateStr);
@@ -81,7 +85,7 @@ public class ProfileController {
         double survivalRateYears = Double.parseDouble(survivalRateStr.replaceAll("[^0-9.]", ""));
 
         // Get the patient's birthdate
-        Patient patient = SessionUtils.getPatientByEmail(email);
+        Patient patient = PatientUtils.getPatientByEmail(email);
         if (patient == null) {
             System.out.println("Patient not found.");
             return;
@@ -93,17 +97,20 @@ public class ProfileController {
                 "VERSION:2.0\n" +
                 "BEGIN:VEVENT\n" +
                 "DTSTART:" + expectedDeathDate.format(DateTimeFormatter.ofPattern("yyyyMMdd")) + "\n" +
-                "SUMMARY:Expected Date of Death\n" +
-                "DESCRIPTION:Based on the calculated survival rate, the expected date of death.\n" +
+                "SUMMARY:Your Estimated end of life span\n" +
+                "DESCRIPTION:Based on the calculated survival rate, the expected end of life span\n" +
                 "END:VEVENT\n" +
                 "END:VCALENDAR";
 
         // Save the ICS file
         try {
+            Reset.clearConsole();
             Files.write(Paths.get(icalendarFile), icsContent.getBytes());
             System.out.println("ICS schedule downloaded: " + icalendarFile);
         } catch (IOException e) {
             System.out.println("An error occurred while writing the ICS file: " + e.getMessage());
         }
     }
+
+ 
 }
