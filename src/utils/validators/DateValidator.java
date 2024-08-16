@@ -20,7 +20,7 @@ public class DateValidator implements Validator {
     }
 
     public boolean validateDateOrder(LocalDate dateOfBirth, LocalDate diagnosisDate, LocalDate artStartDate) {
-        // if (dateOfBirth.isAfter(LocalDate.now()) || diagnosisDate !=null && diagnosisDate.isAfter(LocalDate.now()) || diagnosisDate!=null&& artStartDate.isAfter(LocalDate.now())) {
+        // TODO: #12 if (dateOfBirth.isAfter(LocalDate.now()) || diagnosisDate !=null && diagnosisDate.isAfter(LocalDate.now()) || diagnosisDate!=null&& artStartDate.isAfter(LocalDate.now())) {
         //     return false;
         // }
 
