@@ -6,7 +6,7 @@ import accounts.controllers.RegistrationController;
 import core.Docs;
 import utils.enums.ExportType;
 import utils.interractions.Reset;
-import utils.user.SessionUtils;
+import utils.user.DataExport;
 
 public class AdminDashboardController {
     private static final Scanner scanner = new Scanner(System.in);
@@ -37,10 +37,10 @@ Reset.clearConsole();
                     RegistrationController.createAdmin();
                     break;
                 case 3:
-                    SessionUtils.downloadCSV(ExportType.PATIENT_INFO);
+                    DataExport.downloadCSV(ExportType.PATIENT_INFO);
                     break;
                 case 4:
-                    SessionUtils.downloadCSV(ExportType.PATIENT_STATS);
+                    DataExport.downloadCSV(ExportType.PATIENT_STATS);
                     break;
                 case 5:
                     Docs.showHelp(utils.enums.UserRole.ADMIN);
