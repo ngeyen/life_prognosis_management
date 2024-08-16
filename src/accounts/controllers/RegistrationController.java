@@ -2,7 +2,7 @@ package accounts.controllers;
 
 import accounts.models.Admin;
 import accounts.services.RegistrationService;
-
+import utils.interractions.Reset;
 import utils.validators.EmailValidator;
 import utils.validators.InputValidator;
 import utils.validators.PasswordValidator;
@@ -24,6 +24,8 @@ public class RegistrationController {
         Admin admin = new Admin(firstName, lastName, email, password);
         boolean success = registrationService.createUser(admin);
         if (success) {
+            Reset.clearConsole();
+            
             System.out.println("Admin added created.");
         } else {
             System.out.println("Failed to create Admin. Please try again.");
@@ -34,6 +36,7 @@ public class RegistrationController {
         String email = emailValidator.getValidEmail("Patient Email: ");
         String uuid = registrationService.initializeRegistration(email);
         if (uuid != null) {
+Reset.clearConsole();
             System.out.println("Registration initiated. Share this UUID with the user: " + uuid);
         } else {
             System.out.println("Failed to initiate registration. Please try again.");
