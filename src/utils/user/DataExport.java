@@ -1,14 +1,23 @@
 package utils.user;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
+import accounts.models.Patient;
 import core.AppConfig;
+import datacompute.controllers.StatisticsController;
+import datacompute.services.StatisticsService;
+import utils.enums.ExportType;
+import utils.interractions.Reset;
 
 public class DataExport {
-
+    private static StatisticsService service = new StatisticsService();
+    private static DataExport dataExport = new DataExport();
     // Define the headers for the CSV file
     private final String[] HEADERS = {
             "First Name",
@@ -58,6 +67,7 @@ public class DataExport {
             }
 
             writer.flush();
+            Reset.clearConsole();
             System.out.println("Patient data exported successfully to " + exportFileName);
 
         } catch (IOException e) {
@@ -65,4 +75,44 @@ public class DataExport {
         }
     }
 
+    public void saveStatisticsToCSV() throws IOException {
+        List<Patient> patients = service.getPatientAsList();
+        StatisticsController controller = new StatisticsController(patients);
+
+        String filePath = AppConfig.getStaticticsPath();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write("Statistic,Value\n");
+            writer.write("Number of Users," + patients.size() + "\n");
+            writer.write("Average Age," + controller.calculateAverageAge() + "\n");
+            writer.write("Median Age," + controller.calculateMedianAge() + "\n");
+            writer.write("Average Duration on ART (days)," + controller.calculateAverageDurationOnArt() + "\n");
+            writer.write("Median Duration on ART (days)," + controller.calculateMedianDurationOnArt() + "\n");
+
+            // Write count of patients by country
+            writer.write("Country Code,Patient Count\n");
+            Map<String, Long> patientCountByCountry = controller.countPatientsByCountry();
+            for (Map.Entry<String, Long> entry : patientCountByCountry.entrySet()) {
+                writer.write(entry.getKey() + "," + entry.getValue() + "\n");
+            }
+        }
+    }
+
+   
+
+   public static void downloadCSV(ExportType type) {
+       if (type == ExportType.PATIENT_INFO) {
+
+           dataExport.exportPatientData(AppConfig.getPatientDataExportPath());
+       }
+       if (type == ExportType.PATIENT_STATS) {
+           try {
+            Reset.clearConsole();
+               System.out.print("Downloading Patient stats.... to " + AppConfig.getStaticticsPath() +"\n\n");
+               dataExport.saveStatisticsToCSV();
+           } catch (IOException e) {
+               e.printStackTrace();
+               // TODO: #11 To be handled
+           }
+       }
+   }
 }
