@@ -56,18 +56,20 @@ register_user() {
     # Hash the password
     hashed_password=$(hash_password "$password")
 
+    if [ "$role" == "admin" ]; then
+        # Generate a new UUID for the admin
+        uuid=$(generate_uuid)
+        echo "$email,$uuid,$first_name,$last_name,$hashed_password,$role" >> "$USER_STORE"
+        echo "SUCCESS: Admin registered successfully"
+        exit 0
+    fi 
+    
     # Check if the email already exists
     if grep -q "^$email," "$USER_STORE"; then
+
         existing_line=$(grep "^$email," "$USER_STORE")
         uuid=$(echo "$existing_line" | cut -d',' -f2)
    
-        if [ "$role" == "admin" ]; then
-            # Generate a new UUID for the admin
-            uuid=$(generate_uuid)
-            echo "$email,$uuid,$first_name,$last_name,$hashed_password,$role" >> "$USER_STORE"
-            echo "SUCCESS: Admin registered successfully"
-            exit 0 
-        else
             date_of_birth="$7"
             hiv_positive="$8"
             diagnosis_date="$9"
@@ -79,7 +81,6 @@ register_user() {
             sed -i "s|^$email,$uuid.*|$email,$uuid,$first_name,$last_name,$hashed_password,$role,$date_of_birth,$hiv_positive,$diagnosis_date,$on_art,$art_start_date,$country_iso_code|" "$USER_STORE"
             echo "SUCCESS: User registered successfully"
             exit 0
-        fi
     else
         echo "FAILURE: User not initialized"
         exit 1
